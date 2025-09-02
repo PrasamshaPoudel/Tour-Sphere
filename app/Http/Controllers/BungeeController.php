@@ -55,3 +55,4 @@ class BungeeController extends Controller
         return view('pages.bungee', compact('locations'));
     }
 }
+

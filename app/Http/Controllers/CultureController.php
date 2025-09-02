@@ -131,3 +131,4 @@ class CultureController extends Controller
         return view('pages.culture-details', compact('experiences'));
     }
 }
+

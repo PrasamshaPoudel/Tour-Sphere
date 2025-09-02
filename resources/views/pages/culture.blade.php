@@ -103,7 +103,7 @@
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 1-7 days
                             </div>
-                            <a href="{{ route('culture-details') }}" 
+                            <a href="{{ route('destinations') }}" 
                                class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                 Learn More
                             </a>
@@ -130,7 +130,7 @@
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 2-4 hours
                             </div>
-                            <a href="{{ route('culture-details') }}" 
+                            <a href="{{ route('destinations') }}" 
                                class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                 Learn More
                             </a>
@@ -157,7 +157,7 @@
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 3-6 hours
                             </div>
-                            <a href="{{ route('culture-details') }}" 
+                            <a href="{{ route('destinations') }}" 
                                class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                 Learn More
                             </a>

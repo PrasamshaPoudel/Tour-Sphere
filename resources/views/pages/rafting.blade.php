@@ -259,3 +259,4 @@ function toggleDetails(index) {
 }
 </script>
 @endsection
+

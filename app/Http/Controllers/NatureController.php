@@ -134,3 +134,4 @@ class NatureController extends Controller
         return view('pages.nature-details', compact('experiences'));
     }
 }
+

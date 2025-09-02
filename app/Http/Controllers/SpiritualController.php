@@ -130,3 +130,4 @@ class SpiritualController extends Controller
         return view('pages.spiritual-details', compact('experiences'));
     }
 }
+

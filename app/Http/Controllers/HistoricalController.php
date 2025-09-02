@@ -129,3 +129,4 @@ class HistoricalController extends Controller
         return view('pages.historical-details', compact('experiences'));
     }
 }
+
