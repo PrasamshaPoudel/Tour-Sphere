@@ -20,7 +20,7 @@
 
   {{-- WHY CHOOSE --}}
   <section class="why">
-    <h2>Why choose Tour Sphere?</h2>
+    <h2 class="section-title">Why choose Tour Sphere?</h2>
 
     <div class="features">
       <article class="feature">
@@ -50,7 +50,7 @@
   </section>
 
 <section class="trending">
-  <h2>Trending Destinations</h2>
+  <h2 class="section-title">Trending Destinations</h2>
   <div class="grid">
     <div class="circle">
       <img src="{{ asset('images/pokhara.jpg') }}" alt="Pokhara">
@@ -83,7 +83,7 @@
   </div>
 </section>
 <section class="popular">
-  <h2>Popular Destinations</h2>
+  <h2 class="section-title">Popular Destinations</h2>
   <div class="popular-grid">
 
     <!-- Everest -->
@@ -92,7 +92,7 @@
       <div class="destination-info">
         <h3>Everest Base Camp</h3>
         <p>Majestic trek to Everest’s base.</p>
-        <button class="book-btn">Book Now</button>
+        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>16 days</span>
           <span>From <strong>Rs 80,000</strong></span>
@@ -106,7 +106,7 @@
       <div class="destination-info">
         <h3>Lumbini</h3>
         <p>Visit the birthplace of Lord Buddha.</p>
-        <button class="book-btn">Book Now</button>
+        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>3 days</span>
           <span>From <strong>Rs 10,000</strong></span>
@@ -120,7 +120,7 @@
       <div class="destination-info">
         <h3>Upper Mustang</h3>
         <p>Discover the hidden kingdom of Mustang.</p>
-        <button class="book-btn">Book Now</button>
+        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>10 days</span>
           <span>From <strong>Rs 45,000</strong></span>
@@ -134,7 +134,7 @@
       <div class="destination-info">
         <h3>Pokhara</h3>
         <p>Relax by Phewa Lake and enjoy panoramic mountain views.</p>
-        <button class="book-btn">Book Now</button>
+        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>4 days</span>
           <span>From <strong>Rs 12,000</strong></span>
@@ -148,7 +148,7 @@
       <div class="destination-info">
         <h3>Chitwan Safari</h3>
         <p>Wildlife safari with rhinos, tigers, and jungle adventures.</p>
-        <button class="book-btn">Book Now</button>
+        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>3 days</span>
           <span>From <strong>Rs 15,000</strong></span>
@@ -162,7 +162,7 @@
       <div class="destination-info">
         <h3>Annapurna Circuit</h3>
         <p>Legendary trek through diverse landscapes and villages.</p>
-        <button class="book-btn">Book Now</button>
+        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>14 days</span>
           <span>From <strong>Rs 70,000</strong></span>
@@ -176,7 +176,7 @@
       <div class="destination-info">
         <h3>Gosaikunda</h3>
         <p>Scenic alpine lake and sacred pilgrimage site in Langtang.</p>
-        <button class="book-btn">Book Now</button>
+        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>5 days</span>
           <span>From <strong>Rs 25,000</strong></span>
@@ -189,18 +189,18 @@
 <!-- Promo Offer Section -->
 <section class="promo-offer">
   <div class="promo-content">
-    <h2>Grab up to <span>35% off</span> on your favorite Destination</h2>
+    <h2 class="section-title">Grab up to <span>35% off</span> on your favorite Destination</h2>
     <p>Limited time offer, don't miss the opportunity</p>
-    <a href="booking.php" class="btn">Book Now</a>
+    <a href="{{ route('booking') }}" class="btn">Book Now</a>
   </div>
   <div class="promo-image">
-    <img src="images/download.jpg" alt="Travel Offer">
+    <img src="images/temple-tour.jpg" alt="Travel Offer">
   </div>
 </section>
 <!-- Popular Things To Do Section -->
 <section class="things-to-do">
   <div class="section-header">
-    <h2>Popular things to do</h2>
+    <h2 class="section-title">Popular things to do</h2>
     <a href="things-to-do.php" class="see-all">See all</a>
   </div>
 
@@ -242,7 +242,7 @@
 <!-- Top Trending Section -->
 <section class="top-trending">
   <div class="section-header">
-    <h2>Top Trending</h2>
+    <h2 class="section-title">Top Trending</h2>
     <a href="trending.php" class="see-all">See all</a>
   </div>
 
@@ -283,7 +283,7 @@
 
 <!-- Customer Reviews Section -->
 <section class="reviews">
-  <h2>Customer Reviews</h2>
+  <h2 class="section-title">Customer Reviews</h2>
   <div class="review-box">
     <div class="review-text">
       <h4>Excellent Service!</h4>
@@ -292,7 +292,7 @@
          I highly recommend them!</p>
     </div>
     <div class="review-author">
-      <img src="images/customer1.jpg" alt="Customer">
+      <img src="images/sejal.jpg" alt="Customer">
       <p>- Sarah <br>Traveller </br></p>
     </div>
   </div>

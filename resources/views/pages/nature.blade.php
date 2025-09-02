@@ -103,10 +103,16 @@
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 2-5 days
                             </div>
-                            <a href="{{ route('nature-details') }}" 
-                               class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
-                                Learn More
-                            </a>
+                            <div class="flex gap-3">
+                                <a href="{{ route('nature-details') }}?focus=lakes" 
+                                   class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
+                                    Learn More
+                                </a>
+                                <a href="{{ route('booking') }}?category=nature&tour=lakes" 
+                                   class="bg-white text-green-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                    Book Now
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,10 +136,16 @@
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 3-7 days
                             </div>
-                            <a href="{{ route('nature-details') }}" 
-                               class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
-                                Learn More
-                            </a>
+                            <div class="flex gap-3">
+                                <a href="{{ route('nature-details') }}?focus=forests" 
+                                   class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
+                                    Learn More
+                                </a>
+                                <a href="{{ route('booking') }}?category=nature&tour=forests" 
+                                   class="bg-white text-green-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                    Book Now
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -157,10 +169,16 @@
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 5-14 days
                             </div>
-                            <a href="{{ route('nature-details') }}" 
-                               class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
-                                Learn More
-                            </a>
+                            <div class="flex gap-3">
+                                <a href="{{ route('nature-details') }}?focus=mountains" 
+                                   class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
+                                    Learn More
+                                </a>
+                                <a href="{{ route('booking') }}?category=nature&tour=mountains" 
+                                   class="bg-white text-green-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                    Book Now
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

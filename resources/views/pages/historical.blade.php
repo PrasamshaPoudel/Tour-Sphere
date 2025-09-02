@@ -103,10 +103,16 @@
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 4-6 hours
                             </div>
-                            <a href="{{ route('historical-details') }}" 
-                               class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
-                                Learn More
-                            </a>
+                            <div class="flex gap-3">
+                                <a href="{{ route('historical-details') }}?focus=palaces" 
+                                   class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
+                                    Learn More
+                                </a>
+                                <a href="{{ route('booking') }}?category=historical&tour=palaces" 
+                                   class="bg-white text-indigo-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                    Book Now
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,10 +136,16 @@
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 6-8 hours
                             </div>
-                            <a href="{{ route('historical-details') }}" 
-                               class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
-                                Learn More
-                            </a>
+                            <div class="flex gap-3">
+                                <a href="{{ route('historical-details') }}?focus=heritage" 
+                                   class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
+                                    Learn More
+                                </a>
+                                <a href="{{ route('booking') }}?category=historical&tour=heritage" 
+                                   class="bg-white text-indigo-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                    Book Now
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -157,10 +169,16 @@
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 2-4 hours
                             </div>
-                            <a href="{{ route('historical-details') }}" 
-                               class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
-                                Learn More
-                            </a>
+                            <div class="flex gap-3">
+                                <a href="{{ route('historical-details') }}?focus=museums" 
+                                   class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
+                                    Learn More
+                                </a>
+                                <a href="{{ route('booking') }}?category=historical&tour=museums" 
+                                   class="bg-white text-indigo-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                    Book Now
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

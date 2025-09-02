@@ -103,10 +103,16 @@
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 3-5 hours
                             </div>
-                            <a href="{{ route('spiritual-details') }}" 
-                               class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
-                                Learn More
-                            </a>
+                            <div class="flex gap-3">
+                                <a href="{{ route('spiritual-details') }}?focus=temples" 
+                                   class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
+                                    Learn More
+                                </a>
+                                <a href="{{ route('booking') }}?category=spiritual&tour=temples" 
+                                   class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                    Book Now
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -130,10 +136,16 @@
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 3-10 days
                             </div>
-                            <a href="{{ route('spiritual-details') }}" 
-                               class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
-                                Learn More
-                            </a>
+                            <div class="flex gap-3">
+                                <a href="{{ route('spiritual-details') }}?focus=meditation" 
+                                   class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
+                                    Learn More
+                                </a>
+                                <a href="{{ route('booking') }}?category=spiritual&tour=meditation" 
+                                   class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                    Book Now
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -157,10 +169,16 @@
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 1-7 days
                             </div>
-                            <a href="{{ route('spiritual-details') }}" 
-                               class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
-                                Learn More
-                            </a>
+                            <div class="flex gap-3">
+                                <a href="{{ route('spiritual-details') }}?focus=monasteries" 
+                                   class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
+                                    Learn More
+                                </a>
+                                <a href="{{ route('booking') }}?category=spiritual&tour=monasteries" 
+                                   class="bg-white text-purple-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                    Book Now
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

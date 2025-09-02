@@ -217,3 +217,4 @@ function toggleDetails(id) {
 </script>
 @endsection
 
+

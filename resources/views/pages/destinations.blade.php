@@ -20,8 +20,8 @@
 
 <!-- Destination Grid -->
 <section class="destination-list">
-    <div class="section-header">
-      <h2>Packages</h2>
+    <div class="section-header section-header--center">
+      <h2 class="section-title">Packages</h2>
     </div>
 
     <div class="dest-grid">
@@ -31,7 +31,7 @@
         <p>Glacial sanctuary beneath towering peaks.</p>
         <span>7 days</span>
         <strong>From Rs 18000</strong>
-        <a href="{{ url('destination-details/1') }}" class="btn">View Details</a>
+        <a href="{{ route('destination.details', ['id' => 1]) }}" class="btn">View Details</a>
       </div>
 
       <div class="dest-card">
@@ -40,7 +40,7 @@
         <p>Gurung village with Himalayan views.</p>
         <span>3 days</span>
         <strong>From Rs 12000</strong>
-        <a href="{{ url('destination-details/2') }}" class="btn">View Details</a>
+        <a href="{{ route('destination.details', ['id' => 2]) }}" class="btn">View Details</a>
       </div>
 
       <div class="dest-card">
@@ -49,7 +49,7 @@
         <p>Remote valley with wild beauty.</p>
         <span>7 days</span>
         <strong>From Rs 20000</strong>
-        <a href="{{ url('destination-details/3') }}" class="btn">View Details</a>
+        <a href="{{ route('destination.details', ['id' => 3]) }}" class="btn">View Details</a>
       </div>
 
       <div class="dest-card">
@@ -58,7 +58,7 @@
         <p>Tea paradise with winding hills.</p>
         <span>4 days</span>
         <strong>From Rs 10000</strong>
-        <a href="{{ url('destination-details/4') }}" class="btn">View Details</a>
+        <a href="{{ route('destination.details', ['id' => 4]) }}" class="btn">View Details</a>
       </div>
     </div>
 </section>

@@ -58,3 +58,8 @@ Route::get('/spiritual-details', [SpiritualController::class, 'index'])->name('s
 
 // 🏛️ Historical Activity Details
 Route::get('/historical-details', [HistoricalController::class, 'index'])->name('historical-details');
+
+
+Route::get('/destination-details/{id}', function ($id) {
+    return view('pages.destination-details', ['id' => (int) $id]);
+})->name('destination.details');
