@@ -1,147 +1,171 @@
 @extends('layouts.app')
 
-@section('title', 'Destination Details')
+@section('title', $pkg['name'] . ' Package')
 
 @section('content')
-@php
-  $packages = [
-    1 => [
-      'name' => 'Annapurna Base Camp',
-      'image' => 'images/annapurnabasecamp.jpg',
-      'duration' => '7 days',
-      'difficulty' => 'Moderate',
-      'price' => 'Rs 18,000',
-      'overview' => 'Glacial sanctuary beneath towering peaks with rich Gurung culture along the way.',
-      'itinerary' => [
-        'Day 1: Arrival in Pokhara and walk briefing',
-        'Day 2: Drive to Nayapul, trek to Tikhedhunga',
-        'Day 3: Trek to Ghorepani',
-        'Day 4: Poon Hill sunrise, trek to Tadapani',
-        'Day 5: Trek to Deurali',
-        'Day 6: Trek to Annapurna Base Camp and back to Deurali',
-        'Day 7: Trek to Siwai and drive back to Pokhara',
-      ],
-      'inclusions' => [
-        'Accommodation during trek',
-        'Breakfasts and dinners on trek',
-        'TIMS and Annapurna Conservation permits',
-        'Experienced local guide',
-        'Pick-up and drop-off',
-      ],
-    ],
-    2 => [
-      'name' => 'Ghandruk',
-      'image' => 'images/ghandruk.jpg',
-      'duration' => '3 days',
-      'difficulty' => 'Easy',
-      'price' => 'Rs 12,000',
-      'overview' => 'Gurung village with Himalayan views and cultural homestays.',
-      'itinerary' => [
-        'Day 1: Drive to Kimche and hike to Ghandruk',
-        'Day 2: Sunrise viewpoint and village tour',
-        'Day 3: Hike down and return to Pokhara',
-      ],
-      'inclusions' => [
-        'Homestay accommodation',
-        'Breakfast included',
-        'Local guide',
-        'Permits and entries',
-      ],
-    ],
-    3 => [
-      'name' => 'Dhorpatan',
-      'image' => 'images/dhorpatan.jpg',
-      'duration' => '7 days',
-      'difficulty' => 'Moderate',
-      'price' => 'Rs 20,000',
-      'overview' => 'Remote valley with wild beauty and alpine meadows.',
-      'itinerary' => [
-        'Day 1: Drive to Baglung',
-        'Day 2-5: Trekking through rural hamlets and meadows',
-        'Day 6: Return trek',
-        'Day 7: Drive back',
-      ],
-      'inclusions' => [
-        'Lodge accommodation',
-        'Guide and porter',
-        'Permits',
-      ],
-    ],
-    4 => [
-      'name' => 'Ilam',
-      'image' => 'images/illam.jpg',
-      'duration' => '4 days',
-      'difficulty' => 'Easy',
-      'price' => 'Rs 10,000',
-      'overview' => 'Tea paradise with winding hills and quiet sunrise points.',
-      'itinerary' => [
-        'Day 1: Flight/drive and tea garden walk',
-        'Day 2: Kanyam and viewpoints',
-        'Day 3: Local villages and homestays',
-        'Day 4: Return',
-      ],
-      'inclusions' => [
-        'Hotel stays',
-        'Breakfasts',
-        'Local transfers',
-      ],
-    ],
-  ];
-
-  $pkg = $packages[$id] ?? $packages[1];
-  $slug = Str::slug($pkg['name']);
-@endphp
-
-<section class="hero">
-    <div class="hero-bg" style="background-image:url('{{ asset($pkg['image']) }}')"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>{{ $pkg['name'] }} <br><span>Package</span></h1>
-      <p>Itinerary, inclusions, and helpful tips for your trip.</p>
+<!-- Hero Section -->
+<section class="relative h-96 bg-gradient-to-r from-green-900 to-green-700 text-white">
+    <div class="absolute inset-0 bg-black opacity-40"></div>
+    <div class="relative z-10 container mx-auto px-4 h-full flex items-center">
+        <div class="max-w-4xl">
+            <h1 class="text-5xl font-bold mb-6">{{ $pkg['name'] }}</h1>
+            <p class="text-xl mb-8">{{ $pkg['overview'] }}</p>
+            <div class="flex flex-wrap gap-4">
+                <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                    <span class="font-semibold">Duration: {{ $pkg['duration'] }}</span>
+                </div>
+                <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                    <span class="font-semibold">Difficulty: {{ $pkg['difficulty'] }}</span>
+                </div>
+                <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                    <span class="font-semibold">From {{ $pkg['price'] }}</span>
+                </div>
+            </div>
+        </div>
     </div>
-    <svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none">
-      <path d="M0,80 C300,120 600,0 900,60 C1100,100 1300,80 1440,60 L1440,100 L0,100 Z"></path>
-    </svg>
 </section>
 
-<section class="container pad">
-  <h2 class="section-title">Package Overview</h2>
-  <div class="dest-card" style="max-width:1024px;margin:0 auto;">
-    <img src="{{ asset($pkg['image']) }}" alt="{{ $pkg['name'] }}" style="width:100%;height:340px;object-fit:cover;border-radius:12px;">
-    <div style="padding:16px">
-      <h3 style="margin:0 0 8px;font-size:22px;color:#1e293b">{{ $pkg['name'] }}</h3>
-      <p style="color:#475569;margin:0 0 12px">{{ $pkg['overview'] }}</p>
-      <div style="display:flex;gap:16px;color:#334155;font-size:14px;margin-bottom:12px;flex-wrap:wrap">
-        <span>Duration: {{ $pkg['duration'] }}</span>
-        <span>Difficulty: {{ $pkg['difficulty'] }}</span>
-        <span>From <strong style="color:var(--brand)">{{ $pkg['price'] }}</strong></span>
-      </div>
-      <a href="{{ route('booking') }}?tour={{ $slug }}" class="btn btn-dark">Book Now</a>
+<!-- Package Overview Section -->
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden md:flex">
+            <!-- Package Image -->
+            <div class="md:w-1/2 relative">
+                <img src="{{ asset($pkg['image']) }}" 
+                     alt="{{ $pkg['name'] }}" 
+                     class="w-full h-96 md:h-full object-cover">
+            </div>
+
+            <!-- Package Details -->
+            <div class="md:w-1/2 p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-3xl font-bold text-gray-900">{{ $pkg['name'] }}</h3>
+                    <div class="text-green-600 font-bold text-xl">{{ $pkg['price'] }}</div>
+                </div>
+                <p class="text-gray-600 mb-6 leading-relaxed">{{ $pkg['overview'] }}</p>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-4">
+                    <button onclick="toggleDetails('itinerary')" 
+                            class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                        View Details
+                    </button>
+                    <a href="{{ route('booking') }}?tour={{ $slug }}&category=trekking" 
+                       class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                        Book Now
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
-<section class="container pad">
-  <h2 class="section-title">Itinerary</h2>
-  <div class="dest-card" style="max-width:1024px;margin:0 auto;padding:16px">
-    <ul style="margin:0;padding-left:18px;color:#334155;line-height:1.8">
-      @foreach($pkg['itinerary'] as $line)
-        <li>{{ $line }}</li>
-      @endforeach
-    </ul>
-  </div>
+<!-- Expandable Details -->
+<div id="details-itinerary" class="hidden container mx-auto px-4 bg-white rounded-2xl shadow-lg p-8 mb-16">
+    <div class="grid md:grid-cols-2 gap-8">
+        <!-- Itinerary -->
+        <div>
+            <h4 class="text-xl font-bold text-gray-900 mb-4">📅 Itinerary</h4>
+            <div class="space-y-3">
+                @foreach($pkg['itinerary'] as $day)
+                <div class="flex items-start">
+                    <div class="bg-green-100 text-green-600 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">
+                        {{ $loop->iteration }}
+                    </div>
+                    <p class="text-gray-700">{{ $day }}</p>
+                </div>
+                @endforeach
+            </div>
+        </div>
+
+        <!-- Inclusions -->
+        <div>
+            <h4 class="text-xl font-bold text-gray-900 mb-4">🎒 Inclusions</h4>
+            <div class="grid grid-cols-1 gap-2">
+                @foreach($pkg['inclusions'] as $inc)
+                <div class="flex items-center">
+                    <span class="text-green-500 mr-2">•</span>
+                    <span class="text-gray-700">{{ $inc }}</span>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Safety & Tips Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Tips & Preparation</h2>
+            <p class="text-xl text-gray-600">Make the most out of your trekking adventure with these tips.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-3xl">🥾</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Gear Up</h3>
+                <p class="text-gray-600 text-sm">Wear proper trekking boots and pack light but essential items.</p>
+            </div>
+            <div class="text-center">
+                <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-3xl">💧</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Stay Hydrated</h3>
+                <p class="text-gray-600 text-sm">Carry a reusable water bottle and purification tablets.</p>
+            </div>
+            <div class="text-center">
+                <div class="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-3xl">🧥</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Layer Clothing</h3>
+                <p class="text-gray-600 text-sm">Mountain weather changes fast—dress in layers for comfort.</p>
+            </div>
+            <div class="text-center">
+                <div class="bg-red-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-3xl">⛰️</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Acclimatize</h3>
+                <p class="text-gray-600 text-sm">Take it slow to adjust to altitude and avoid sickness.</p>
+            </div>
+        </div>
+    </div>
 </section>
 
-<section class="container pad">
-  <h2 class="section-title">Inclusions</h2>
-  <div class="dest-card" style="max-width:1024px;margin:0 auto;padding:16px">
-    <ul style="margin:0;padding-left:18px;color:#334155;line-height:1.8">
-      @foreach($pkg['inclusions'] as $inc)
-        <li>{{ $inc }}</li>
-      @endforeach
-    </ul>
-  </div>
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-r from-green-600 to-green-800 text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-6">Ready for Your Trekking Adventure?</h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">
+            Book your trek today and immerse yourself in Nepal’s majestic landscapes and culture.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ route('booking') }}?tour={{ $slug }}&category=trekking" 
+               class="bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                Book Now
+            </a>
+            <a href="{{ route('contact') }}" 
+               class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
+                Contact Us
+            </a>
+        </div>
+    </div>
 </section>
+
+<script>
+function toggleDetails(index) {
+    const details = document.getElementById('details-' + index);
+    const button = event.target;
+
+    if (details.classList.contains('hidden')) {
+        details.classList.remove('hidden');
+        button.textContent = 'Hide Details';
+    } else {
+        details.classList.add('hidden');
+        button.textContent = 'View Details';
+    }
+}
+</script>
 @endsection
-
-

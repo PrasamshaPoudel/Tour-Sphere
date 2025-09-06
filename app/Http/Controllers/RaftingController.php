@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+use App\Services\WeatherService;
 
 class RaftingController extends Controller
 {
-    public function index()
+    public function index(WeatherService $weatherService)
     {
         // River data with detailed information
         $rivers = [
@@ -199,58 +199,57 @@ class RaftingController extends Controller
 
         // Get weather data for each river location
         $weatherData = [];
+        $forecastData = [];
         foreach ($rivers as $river) {
-            $weatherData[$river['name']] = [
-                'temperature' => 22,
-                'description' => 'Partly cloudy',
-                'humidity' => 65,
-                'wind_speed' => 3.2,
-                'icon' => '02d'
-            ];
-        }
-
-        return view('pages.rafting', compact('rivers', 'weatherData'));
-    }
-
-    private function getWeatherData($location)
-    {
-        try {
-            // Using OpenWeatherMap API (free tier)
-            $apiKey = 'your_api_key_here'; // You'll need to get a free API key from OpenWeatherMap
-            $response = Http::get("http://api.openweathermap.org/data/2.5/weather", [
-                'q' => $location,
-                'appid' => $apiKey,
-                'units' => 'metric'
-            ]);
-
-            if ($response->successful()) {
-                $data = $response->json();
-                return [
-                    'temperature' => round($data['main']['temp']),
-                    'description' => ucfirst($data['weather'][0]['description']),
-                    'humidity' => $data['main']['humidity'],
-                    'wind_speed' => $data['wind']['speed'],
-                    'icon' => $data['weather'][0]['icon']
+            // Extract city name from location (e.g., "Pokhara, Nepal" -> "Pokhara")
+            $city = explode(',', $river['location'])[0];
+            
+            try {
+                $weatherResult = $weatherService->getCurrentAndForecastByCity($city);
+                
+                // Current weather
+                if ($weatherResult['current']['ok']) {
+                    $data = $weatherResult['current']['data'];
+                    $weatherData[$river['name']] = [
+                        'temperature' => round($data['main']['temp']),
+                        'description' => $data['weather'][0]['description'] ?? 'Clear sky',
+                        'humidity' => $data['main']['humidity'],
+                        'wind_speed' => round($data['wind']['speed'], 1),
+                        'icon' => $data['weather'][0]['icon'] ?? '01d',
+                        'feels_like' => round($data['main']['feels_like'] ?? $data['main']['temp'])
+                    ];
+                } else {
+                    $weatherData[$river['name']] = [
+                        'temperature' => 22,
+                        'description' => 'Weather unavailable',
+                        'humidity' => 65,
+                        'wind_speed' => 3.2,
+                        'icon' => '02d',
+                        'feels_like' => 24
+                    ];
+                }
+                
+                // 5-day forecast (first 5 entries)
+                if ($weatherResult['forecast']['ok']) {
+                    $forecastList = $weatherResult['forecast']['data']['list'] ?? [];
+                    $forecastData[$river['name']] = array_slice($forecastList, 0, 5);
+                } else {
+                    $forecastData[$river['name']] = [];
+                }
+                
+            } catch (\Exception $e) {
+                $weatherData[$river['name']] = [
+                    'temperature' => 22,
+                    'description' => 'Weather unavailable',
+                    'humidity' => 65,
+                    'wind_speed' => 3.2,
+                    'icon' => '02d',
+                    'feels_like' => 24
                 ];
+                $forecastData[$river['name']] = [];
             }
-        } catch (\Exception $e) {
-            // Fallback weather data if API fails
-            return [
-                'temperature' => 22,
-                'description' => 'Partly cloudy',
-                'humidity' => 65,
-                'wind_speed' => 3.2,
-                'icon' => '02d'
-            ];
         }
 
-        // Default fallback data
-        return [
-            'temperature' => 22,
-            'description' => 'Partly cloudy',
-            'humidity' => 65,
-            'wind_speed' => 3.2,
-            'icon' => '02d'
-        ];
+        return view('pages.rafting', compact('rivers', 'weatherData', 'forecastData'));
     }
 }

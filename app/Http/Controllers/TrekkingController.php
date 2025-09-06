@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\WeatherService;
 
 class TrekkingController extends Controller
 {
-    public function index()
+    public function index(WeatherService $weatherService)
     {
         $treks = [
             [
@@ -259,6 +260,46 @@ class TrekkingController extends Controller
             ]
         ];
 
-        return view('pages.trekking', compact('treks'));
+        // Get weather data for each trek location
+        $weatherData = [];
+        foreach ($treks as $trek) {
+            $city = explode(',', $trek['location'])[0];
+            
+            try {
+                $weatherResult = $weatherService->getCurrentByCity($city);
+                
+                if ($weatherResult['ok']) {
+                    $data = $weatherResult['data'];
+                    $weatherData[$trek['name']] = [
+                        'temperature' => round($data['main']['temp']),
+                        'description' => $data['weather'][0]['description'] ?? 'Clear sky',
+                        'humidity' => $data['main']['humidity'],
+                        'wind_speed' => round($data['wind']['speed'], 1),
+                        'icon' => $data['weather'][0]['icon'] ?? '01d',
+                        'feels_like' => round($data['main']['feels_like'] ?? $data['main']['temp'])
+                    ];
+                } else {
+                    $weatherData[$trek['name']] = [
+                        'temperature' => 15,
+                        'description' => 'Weather unavailable',
+                        'humidity' => 60,
+                        'wind_speed' => 5.0,
+                        'icon' => '02d',
+                        'feels_like' => 17
+                    ];
+                }
+            } catch (\Exception $e) {
+                $weatherData[$trek['name']] = [
+                    'temperature' => 15,
+                    'description' => 'Weather unavailable',
+                    'humidity' => 60,
+                    'wind_speed' => 5.0,
+                    'icon' => '02d',
+                    'feels_like' => 17
+                ];
+            }
+        }
+
+        return view('pages.trekking', compact('treks', 'weatherData'));
     }
 }

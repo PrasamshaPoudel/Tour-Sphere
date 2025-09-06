@@ -1,118 +1,100 @@
 @extends('layouts.app')
 
-@section('title', 'White Water Rafting in Nepal')
+@section('title', 'Bungee Jumping in Nepal')
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative h-96 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+<section class="relative h-96 bg-gradient-to-r from-red-900 to-purple-700 text-white">
     <div class="absolute inset-0 bg-black opacity-40"></div>
     <div class="relative z-10 container mx-auto px-4 h-full flex items-center">
         <div class="max-w-4xl">
-            <h1 class="text-5xl font-bold mb-6">White Water Rafting in Nepal</h1>
-            <p class="text-xl mb-8">Experience the thrill of navigating through Nepal's most exciting rivers. From gentle rapids to challenging white water, discover the perfect rafting adventure for you.</p>
+            <h1 class="text-5xl font-bold mb-6">Bungee Jumping in Nepal</h1>
+            <p class="text-xl mb-8">Experience the ultimate adrenaline rush with Nepal's most extreme bungee jump from a 160m suspension bridge over the Bhote Koshi River gorge.</p>
             <div class="flex flex-wrap gap-4">
                 <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
-                    <span class="font-semibold">3 Rivers</span>
+                    <span class="font-semibold">160m High</span>
                 </div>
                 <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
-                    <span class="font-semibold">All Skill Levels</span>
+                    <span class="font-semibold">New Zealand Standards</span>
                 </div>
                 <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
-                    <span class="font-semibold">Year Round</span>
+                    <span class="font-semibold">Professional Safety</span>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Rivers Section -->
+<!-- Bungee Locations Section -->
 <section class="py-20 bg-gray-50">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">Choose Your River Adventure</h2>
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Ultimate Bungee Experience</h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Each river offers a unique experience, from beginner-friendly rapids to challenging white water for experienced rafters.
+                Take the ultimate leap of faith with Nepal's most thrilling bungee jumping experience.
             </p>
         </div>
 
         <div class="space-y-16">
-            @foreach($rivers as $index => $river)
+            @foreach($locations as $index => $location)
             <div class="bg-white rounded-3xl shadow-2xl overflow-hidden {{ $index % 2 == 1 ? 'md:flex-row-reverse' : '' }} md:flex">
-                <!-- River Image -->
+                <!-- Location Image -->
                 <div class="md:w-1/2 relative">
-                    <img src="{{ asset('images/' . $river['image']) }}" 
-                         alt="{{ $river['name'] }}" 
+                    <img src="{{ asset('images/' . $location['image']) }}" 
+                         alt="{{ $location['name'] }}" 
                          class="w-full h-96 md:h-full object-cover">
                     <div class="absolute top-6 left-6 bg-red-500 text-white px-4 py-2 rounded-full font-bold">
-                        {{ $river['difficulty'] }}
+                        {{ $location['difficulty'] }}
                     </div>
                     <div class="absolute bottom-6 right-6 bg-black bg-opacity-70 text-white px-4 py-2 rounded-full">
-                        {{ $river['cost'] }}
+                        {{ $location['cost'] }}
                     </div>
                 </div>
 
-                <!-- River Details -->
+                <!-- Location Details -->
                 <div class="md:w-1/2 p-8">
                     <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-3xl font-bold text-gray-900">{{ $river['name'] }}</h3>
+                        <h3 class="text-3xl font-bold text-gray-900">{{ $location['name'] }}</h3>
                         <div class="flex items-center space-x-2">
                             <span class="text-sm text-gray-500">📍</span>
-                            <span class="text-sm text-gray-600">{{ $river['location'] }}</span>
+                            <span class="text-sm text-gray-600">{{ $location['location'] }}</span>
                         </div>
                     </div>
 
-                    <p class="text-gray-600 mb-6 leading-relaxed">{{ $river['description'] }}</p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">{{ $location['description'] }}</p>
 
                     <!-- Key Info -->
                     <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="bg-blue-50 p-4 rounded-lg">
-                            <div class="text-sm text-blue-600 font-semibold">Duration</div>
-                            <div class="text-lg font-bold text-gray-900">{{ $river['duration'] }}</div>
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <div class="text-sm text-red-600 font-semibold">Duration</div>
+                            <div class="text-lg font-bold text-gray-900">{{ $location['duration'] }}</div>
                         </div>
                         <div class="bg-green-50 p-4 rounded-lg">
                             <div class="text-sm text-green-600 font-semibold">Best Season</div>
-                            <div class="text-lg font-bold text-gray-900">{{ $river['best_season'] }}</div>
+                            <div class="text-lg font-bold text-gray-900">{{ $location['best_season'] }}</div>
                         </div>
                     </div>
 
                     <!-- Weather Widget -->
-                    @if(isset($weatherData[$river['name']]))
-                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-lg mb-6">
+                    @if(isset($weatherData[$location['name']]))
+                    <div class="bg-gradient-to-r from-red-500 to-purple-600 text-white p-4 rounded-lg mb-6">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-4">
                                 <div>
-                                    <img src="https://openweathermap.org/img/wn/{{ $weatherData[$river['name']]['icon'] }}@2x.png" 
+                                    <img src="https://openweathermap.org/img/wn/{{ $weatherData[$location['name']]['icon'] }}@2x.png" 
                                          alt="Weather icon" class="w-16 h-16">
                                 </div>
                                 <div>
-                                    <div class="text-sm opacity-90">Current Weather - {{ explode(',', $river['location'])[0] }}</div>
-                                    <div class="text-2xl font-bold">{{ $weatherData[$river['name']]['temperature'] }}°C</div>
-                                    <div class="text-sm capitalize">{{ $weatherData[$river['name']]['description'] }}</div>
-                                    <div class="text-xs opacity-80">Feels like {{ $weatherData[$river['name']]['feels_like'] }}°C</div>
+                                    <div class="text-sm opacity-90">Current Weather - {{ explode(',', $location['location'])[0] }}</div>
+                                    <div class="text-2xl font-bold">{{ $weatherData[$location['name']]['temperature'] }}°C</div>
+                                    <div class="text-sm capitalize">{{ $weatherData[$location['name']]['description'] }}</div>
+                                    <div class="text-xs opacity-80">Feels like {{ $weatherData[$location['name']]['feels_like'] }}°C</div>
                                 </div>
                             </div>
                             <div class="text-right">
-                                <div class="text-sm opacity-90">Humidity: {{ $weatherData[$river['name']]['humidity'] }}%</div>
-                                <div class="text-sm opacity-90">Wind: {{ $weatherData[$river['name']]['wind_speed'] }} m/s</div>
+                                <div class="text-sm opacity-90">Humidity: {{ $weatherData[$location['name']]['humidity'] }}%</div>
+                                <div class="text-sm opacity-90">Wind: {{ $weatherData[$location['name']]['wind_speed'] }} m/s</div>
                             </div>
-                        </div>
-                    </div>
-                    @endif
-
-                    <!-- Weather Forecast Widget -->
-                    @if(isset($forecastData[$river['name']]) && count($forecastData[$river['name']]) > 0)
-                    <div class="bg-gradient-to-r from-blue-400 to-indigo-500 text-white p-4 rounded-lg mb-6">
-                        <h4 class="text-lg font-semibold mb-3">5-Day Weather Forecast</h4>
-                        <div class="grid grid-cols-5 gap-2">
-                            @foreach($forecastData[$river['name']] as $forecast)
-                            <div class="text-center bg-white bg-opacity-20 rounded-lg p-2">
-                                <div class="text-xs opacity-90">{{ date('M j', $forecast['dt']) }}</div>
-                                <img src="https://openweathermap.org/img/wn/{{ $forecast['weather'][0]['icon'] }}.png" 
-                                     alt="Weather" class="w-8 h-8 mx-auto">
-                                <div class="text-sm font-bold">{{ round($forecast['main']['temp']) }}°</div>
-                                <div class="text-xs opacity-80">{{ $forecast['weather'][0]['description'] }}</div>
-                            </div>
-                            @endforeach
                         </div>
                     </div>
                     @endif
@@ -121,9 +103,9 @@
                     <div class="mb-6">
                         <h4 class="text-lg font-semibold text-gray-900 mb-3">Highlights</h4>
                         <ul class="space-y-2">
-                            @foreach($river['highlights'] as $highlight)
+                            @foreach($location['highlights'] as $highlight)
                             <li class="flex items-start">
-                                <span class="text-green-500 mr-2">✓</span>
+                                <span class="text-red-500 mr-2">✓</span>
                                 <span class="text-gray-600">{{ $highlight }}</span>
                             </li>
                             @endforeach
@@ -133,10 +115,10 @@
                     <!-- Action Buttons -->
                     <div class="flex gap-4">
                         <button onclick="toggleDetails('{{ $index }}')" 
-                                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             View Details
                         </button>
-                        <a href="{{ route('booking') }}?tour=rafting-{{ strtolower(str_replace(' ', '-', $river['name'])) }}&category=adventure" 
+                        <a href="{{ route('booking') }}?tour=bungee-{{ strtolower(str_replace(' ', '-', $location['name'])) }}&category=adventure" 
                            class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             Book Now
                         </a>
@@ -151,12 +133,12 @@
                     <div>
                         <h4 class="text-xl font-bold text-gray-900 mb-4">📅 Itinerary</h4>
                         <div class="space-y-3">
-                            @foreach($river['itinerary'] as $day)
+                            @foreach($location['itinerary'] as $item)
                             <div class="flex items-start">
-                                <div class="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">
+                                <div class="bg-red-100 text-red-600 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">
                                     {{ $loop->iteration }}
                                 </div>
-                                <p class="text-gray-700">{{ $day }}</p>
+                                <p class="text-gray-700">{{ $item }}</p>
                             </div>
                             @endforeach
                         </div>
@@ -166,9 +148,9 @@
                     <div>
                         <h4 class="text-xl font-bold text-gray-900 mb-4">🎒 Things to Carry</h4>
                         <div class="grid grid-cols-1 gap-2">
-                            @foreach($river['things_to_carry'] as $item)
+                            @foreach($location['things_to_carry'] as $item)
                             <div class="flex items-center">
-                                <span class="text-blue-500 mr-2">•</span>
+                                <span class="text-red-500 mr-2">•</span>
                                 <span class="text-gray-700">{{ $item }}</span>
                             </div>
                             @endforeach
@@ -181,24 +163,24 @@
                     <div class="grid md:grid-cols-3 gap-6">
                         <div class="text-center">
                             <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-2xl">⚠️</span>
+                                <span class="text-2xl">🦺</span>
                             </div>
                             <h5 class="font-semibold text-gray-900 mb-2">Safety First</h5>
-                            <p class="text-sm text-gray-600">All equipment provided. Professional guides included.</p>
+                            <p class="text-sm text-gray-600">New Zealand standard safety equipment and procedures.</p>
                         </div>
                         <div class="text-center">
                             <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-2xl">🏕️</span>
+                                <span class="text-2xl">📜</span>
                             </div>
-                            <h5 class="font-semibold text-gray-900 mb-2">Camping Included</h5>
-                            <p class="text-sm text-gray-600">Overnight camping with meals and accommodation.</p>
+                            <h5 class="font-semibold text-gray-900 mb-2">Certificate Included</h5>
+                            <p class="text-sm text-gray-600">Official bungee jumping certificate and T-shirt included.</p>
                         </div>
                         <div class="text-center">
                             <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
                                 <span class="text-2xl">📸</span>
                             </div>
-                            <h5 class="font-semibold text-gray-900 mb-2">Photo Service</h5>
-                            <p class="text-sm text-gray-600">Professional photos of your adventure included.</p>
+                            <h5 class="font-semibold text-gray-900 mb-2">Video Service</h5>
+                            <p class="text-sm text-gray-600">Professional video recording of your jump available.</p>
                         </div>
                     </div>
                 </div>
@@ -213,56 +195,56 @@
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
             <h2 class="text-4xl font-bold text-gray-900 mb-4">Safety & Tips</h2>
-            <p class="text-xl text-gray-600">Everything you need to know for a safe and enjoyable rafting experience</p>
+            <p class="text-xl text-gray-600">Everything you need to know for a safe and thrilling bungee jumping experience</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="text-center">
-                <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="bg-red-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span class="text-3xl">🦺</span>
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">Safety Equipment</h3>
-                <p class="text-gray-600 text-sm">Life jackets, helmets, and all safety gear provided by certified operators.</p>
+                <p class="text-gray-600 text-sm">New Zealand standard harnesses, ropes, and all safety gear provided.</p>
             </div>
             <div class="text-center">
                 <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span class="text-3xl">👨‍🏫</span>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Expert Guides</h3>
-                <p class="text-gray-600 text-sm">Licensed and experienced guides with first aid certification.</p>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Expert Instructors</h3>
+                <p class="text-gray-600 text-sm">Licensed and experienced instructors with international certification.</p>
             </div>
             <div class="text-center">
                 <div class="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span class="text-3xl">📋</span>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Pre-Trip Briefing</h3>
-                <p class="text-gray-600 text-sm">Comprehensive safety briefing and paddling instructions before departure.</p>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Pre-Jump Briefing</h3>
+                <p class="text-gray-600 text-sm">Comprehensive safety briefing and jump instructions before jumping.</p>
             </div>
             <div class="text-center">
-                <div class="bg-red-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span class="text-3xl">🚨</span>
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">Emergency Support</h3>
-                <p class="text-gray-600 text-sm">24/7 emergency support and rescue services available.</p>
+                <p class="text-gray-600 text-sm">24/7 emergency support and medical facilities available.</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- CTA Section -->
-<section class="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+<section class="py-20 bg-gradient-to-r from-red-600 to-purple-800 text-white">
     <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold mb-6">Ready for Your Rafting Adventure?</h2>
+        <h2 class="text-4xl font-bold mb-6">Ready for the Ultimate Adrenaline Rush?</h2>
         <p class="text-xl mb-8 max-w-2xl mx-auto">
-            Book your white water rafting experience today and create memories that will last a lifetime.
+            Book your bungee jumping experience today and take the leap of a lifetime.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="{{ route('booking') }}?category=adventure" 
-               class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+               class="bg-white text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Book Now
             </a>
             <a href="{{ route('contact') }}" 
-               class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+               class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
                 Contact Us
             </a>
         </div>
@@ -284,4 +266,3 @@ function toggleDetails(index) {
 }
 </script>
 @endsection
-

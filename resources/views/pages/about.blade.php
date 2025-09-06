@@ -3,7 +3,7 @@
 @section('title', 'About Us - Tour Sphere Nepal')
 
 @section('content')
-    {{-- 🏔️ Hero Section --}}
+    {{--  Hero Section --}}
     <section class="hero">
         <div class="hero-bg" style="background-image:url('{{ asset('images/back.jpg') }}')"></div>
         <div class="hero-overlay"></div>
@@ -170,7 +170,7 @@
     {{-- 📞 CTA Section --}}
     <section class="py-20 bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-800 text-white">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-black">
                 Ready to Start Your <span class="text-yellow-300">Adventure</span>?
             </h2>
             <p class="text-xl mb-8 max-w-3xl mx-auto">

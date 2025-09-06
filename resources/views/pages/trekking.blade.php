@@ -78,19 +78,28 @@
                     </div>
 
                     <!-- Weather Widget -->
-                    <div class="bg-gradient-to-r from-green-600 to-blue-700 text-white p-4 rounded-lg mb-6">
+                    @if(isset($weatherData[$trek['name']]))
+                    <div class="bg-gradient-to-r from-green-500 to-blue-600 text-white p-4 rounded-lg mb-6">
                         <div class="flex items-center justify-between">
-                            <div>
-                                <div class="text-sm opacity-90">Current Weather</div>
-                                <div class="text-2xl font-bold">{{ $trek['weather']['temperature'] }}°C</div>
-                                <div class="text-sm">{{ $trek['weather']['description'] }}</div>
+                            <div class="flex items-center space-x-4">
+                                <div>
+                                    <img src="https://openweathermap.org/img/wn/{{ $weatherData[$trek['name']]['icon'] }}@2x.png" 
+                                         alt="Weather icon" class="w-16 h-16">
+                                </div>
+                                <div>
+                                    <div class="text-sm opacity-90">Current Weather - {{ explode(',', $trek['location'])[0] }}</div>
+                                    <div class="text-2xl font-bold">{{ $weatherData[$trek['name']]['temperature'] }}°C</div>
+                                    <div class="text-sm capitalize">{{ $weatherData[$trek['name']]['description'] }}</div>
+                                    <div class="text-xs opacity-80">Feels like {{ $weatherData[$trek['name']]['feels_like'] }}°C</div>
+                                </div>
                             </div>
                             <div class="text-right">
-                                <div class="text-sm opacity-90">Humidity: {{ $trek['weather']['humidity'] }}%</div>
-                                <div class="text-sm opacity-90">Wind: {{ $trek['weather']['wind_speed'] }} m/s</div>
+                                <div class="text-sm opacity-90">Humidity: {{ $weatherData[$trek['name']]['humidity'] }}%</div>
+                                <div class="text-sm opacity-90">Wind: {{ $weatherData[$trek['name']]['wind_speed'] }} m/s</div>
                             </div>
                         </div>
                     </div>
+                    @endif
 
                     <!-- Highlights -->
                     <div class="mb-6">
@@ -274,5 +283,8 @@ function toggleDetails(id) {
 }
 </script>
 @endsection
+
+
+
 
 

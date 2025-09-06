@@ -8,11 +8,10 @@
     <div class="hero-overlay"></div>
 
     <div class="hero-content">
-      <h1>Your world of <br><span>joy</span></h1>
-      <p>From local escapes to far-flung adventures, find what makes you happy anytime, anywhere</p>
+      <h1>Find your next <br><span>destination</span></h1>
+      <p>From local escapes to far‑flung adventures, pick a trip that fits you.</p>
     </div>
 
-    {{-- bottom wave --}}
     <svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none">
       <path d="M0,80 C300,120 600,0 900,60 C1100,100 1300,80 1440,60 L1440,100 L0,100 Z"></path>
     </svg>
@@ -85,7 +84,7 @@
         <div class="p-4">
             <h3 class="text-lg font-bold text-blue-600">Culture</h3>
             <p class="text-gray-600 text-sm mb-4">
-                Explore Nepal’s festivals, art, dance, and heritage sites.
+                Explore Nepal's festivals, art, dance, and heritage sites.
             </p>
             <a href="{{ route('culture') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">Explore</a>
         </div>
@@ -124,6 +123,60 @@
                 Tour ancient palaces, forts, and landmarks of Nepal.
             </p>
             <a href="{{ route('historical') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">Explore</a>
+        </div>
+    </div>
+
+</div>
+
+{{-- Special Packages Section --}}
+<h2 class="text-3xl font-bold mb-8 text-center mt-16">Special Packages</h2>
+<div class="grid md:grid-cols-4 gap-6">
+
+    {{-- Honeymoon --}}
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden text-center">
+        <img src="{{ asset('images/pokhara-romantic.jpg') }}" alt="Honeymoon" class="w-full h-40 object-cover">
+        <div class="p-4">
+            <h3 class="text-lg font-bold text-pink-600">Honeymoon</h3>
+            <p class="text-gray-600 text-sm mb-4">
+                Romantic getaways with candlelight dinners and luxury accommodations.
+            </p>
+            <a href="{{ route('honeymoon') }}" class="bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-lg">Explore</a>
+        </div>
+    </div>
+
+    {{-- Family --}}
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden text-center">
+        <img src="{{ asset('images/chitwan-family.jpg') }}" alt="Family" class="w-full h-40 object-cover">
+        <div class="p-4">
+            <h3 class="text-lg font-bold text-blue-600">Family</h3>
+            <p class="text-gray-600 text-sm mb-4">
+                Fun activities for all ages with safe and educational experiences.
+            </p>
+            <a href="{{ route('family') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">Explore</a>
+        </div>
+    </div>
+
+    {{-- Romantic --}}
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden text-center">
+        <img src="{{ asset('images/candlelight-dinner.jpg') }}" alt="Romantic" class="w-full h-40 object-cover">
+        <div class="p-4">
+            <h3 class="text-lg font-bold text-purple-600">Romantic</h3>
+            <p class="text-gray-600 text-sm mb-4">
+                Intimate experiences and candlelight dinners for couples.
+            </p>
+            <a href="{{ route('romantic') }}" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg">Explore</a>
+        </div>
+    </div>
+
+    {{-- Luxury --}}
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden text-center">
+        <img src="{{ asset('images/luxury-himalayan.jpg') }}" alt="Luxury" class="w-full h-40 object-cover">
+        <div class="p-4">
+            <h3 class="text-lg font-bold text-yellow-600">Luxury</h3>
+            <p class="text-gray-600 text-sm mb-4">
+                5-star accommodations with exclusive access and private services.
+            </p>
+            <a href="{{ route('luxury') }}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg">Explore</a>
         </div>
     </div>
 

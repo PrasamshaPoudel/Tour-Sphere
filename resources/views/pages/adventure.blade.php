@@ -3,7 +3,7 @@
 @section('title', 'Adventure Experiences - Nepal')
 
 @section('content')
-    {{-- 🏔️ Hero Section --}}
+    {{--  Hero Section --}}
     <section class="hero">
         <div class="hero-bg" style="background-image:url('{{ asset('images/pokhara.jpg') }}')"></div>
         <div class="hero-overlay"></div>
@@ -27,7 +27,7 @@
         </svg>
     </section>
 
-    {{-- 🎯 Stats Section --}}
+    {{--  Stats Section --}}
     <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -51,7 +51,7 @@
         </div>
     </section>
 
-    {{-- 🌟 Intro Section --}}
+    {{--  Intro Section --}}
     <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto text-center">
@@ -102,7 +102,7 @@
         </div>
     </section>
 
-    {{-- 🚀 Adventure Activities Grid --}}
+    {{-- Adventure Activities Grid --}}
     <section id="activities" class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
@@ -263,7 +263,7 @@
                                 <span class="font-semibold">Duration:</span> 2-3 hours
                             </div>
                             <div class="flex gap-3">
-                                <a href="{{ route('destinations') }}" 
+                                <a href="{{ route('bungee') }}" 
                                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Learn More
                                 </a>
@@ -303,7 +303,7 @@
                                 <span class="font-semibold">Duration:</span> 1-7 days
                             </div>
                             <div class="flex gap-3">
-                                <a href="{{ route('destinations') }}" 
+                                <a href="{{ route('mountain-biking') }}" 
                                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Learn More
                                 </a>
@@ -342,10 +342,16 @@
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 3-8 hours
                             </div>
-                            <a href="{{ route('destinations') }}" 
-                               class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
-                                Learn More
-                            </a>
+                            <div class="flex gap-3">
+                                <a href="{{ route('rock-climbing') }}" 
+                                   class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
+                                    Learn More
+                                </a>
+                                <a href="{{ route('booking') }}?tour=rock-climbing&category=adventure" 
+                                   class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
+                                    Book Now
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

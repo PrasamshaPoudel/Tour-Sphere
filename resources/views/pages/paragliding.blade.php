@@ -76,19 +76,28 @@
                     </div>
 
                     <!-- Weather Widget -->
+                    @if(isset($weatherData[$location['name']]))
                     <div class="bg-gradient-to-r from-sky-500 to-blue-600 text-white p-4 rounded-lg mb-6">
                         <div class="flex items-center justify-between">
-                            <div>
-                                <div class="text-sm opacity-90">Current Weather</div>
-                                <div class="text-2xl font-bold">{{ $location['weather']['temperature'] }}°C</div>
-                                <div class="text-sm">{{ $location['weather']['description'] }}</div>
+                            <div class="flex items-center space-x-4">
+                                <div>
+                                    <img src="https://openweathermap.org/img/wn/{{ $weatherData[$location['name']]['icon'] }}@2x.png" 
+                                         alt="Weather icon" class="w-16 h-16">
+                                </div>
+                                <div>
+                                    <div class="text-sm opacity-90">Current Weather - {{ explode(',', $location['location'])[0] }}</div>
+                                    <div class="text-2xl font-bold">{{ $weatherData[$location['name']]['temperature'] }}°C</div>
+                                    <div class="text-sm capitalize">{{ $weatherData[$location['name']]['description'] }}</div>
+                                    <div class="text-xs opacity-80">Feels like {{ $weatherData[$location['name']]['feels_like'] }}°C</div>
+                                </div>
                             </div>
                             <div class="text-right">
-                                <div class="text-sm opacity-90">Humidity: {{ $location['weather']['humidity'] }}%</div>
-                                <div class="text-sm opacity-90">Wind: {{ $location['weather']['wind_speed'] }} m/s</div>
+                                <div class="text-sm opacity-90">Humidity: {{ $weatherData[$location['name']]['humidity'] }}%</div>
+                                <div class="text-sm opacity-90">Wind: {{ $weatherData[$location['name']]['wind_speed'] }} m/s</div>
                             </div>
                         </div>
                     </div>
+                    @endif
 
                     <!-- Highlights -->
                     <div class="mb-6">

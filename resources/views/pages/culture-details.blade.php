@@ -218,3 +218,6 @@ function toggleDetails(id) {
 @endsection
 
 
+
+
+

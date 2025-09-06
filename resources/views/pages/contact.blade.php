@@ -220,7 +220,7 @@
     {{-- 📞 CTA Section --}}
     <section class="py-20 bg-gradient-to-br from-blue-600 via-indigo-600 to-blue-800 text-white">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-black">
                 Ready to Start Your <span class="text-yellow-300">Journey</span>?
             </h2>
             <p class="text-xl mb-8 max-w-3xl mx-auto">

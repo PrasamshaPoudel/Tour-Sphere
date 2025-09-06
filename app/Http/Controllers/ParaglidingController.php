@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\WeatherService;
 
 class ParaglidingController extends Controller
 {
-    public function index()
+    public function index(WeatherService $weatherService)
     {
         $locations = [
             [
@@ -171,6 +172,46 @@ class ParaglidingController extends Controller
             ]
         ];
 
-        return view('pages.paragliding', compact('locations'));
+        // Get weather data for each location
+        $weatherData = [];
+        foreach ($locations as $location) {
+            $city = explode(',', $location['location'])[0];
+            
+            try {
+                $weatherResult = $weatherService->getCurrentByCity($city);
+                
+                if ($weatherResult['ok']) {
+                    $data = $weatherResult['data'];
+                    $weatherData[$location['name']] = [
+                        'temperature' => round($data['main']['temp']),
+                        'description' => $data['weather'][0]['description'] ?? 'Clear sky',
+                        'humidity' => $data['main']['humidity'],
+                        'wind_speed' => round($data['wind']['speed'], 1),
+                        'icon' => $data['weather'][0]['icon'] ?? '01d',
+                        'feels_like' => round($data['main']['feels_like'] ?? $data['main']['temp'])
+                    ];
+                } else {
+                    $weatherData[$location['name']] = [
+                        'temperature' => 24,
+                        'description' => 'Weather unavailable',
+                        'humidity' => 60,
+                        'wind_speed' => 2.5,
+                        'icon' => '02d',
+                        'feels_like' => 26
+                    ];
+                }
+            } catch (\Exception $e) {
+                $weatherData[$location['name']] = [
+                    'temperature' => 24,
+                    'description' => 'Weather unavailable',
+                    'humidity' => 60,
+                    'wind_speed' => 2.5,
+                    'icon' => '02d',
+                    'feels_like' => 26
+                ];
+            }
+        }
+
+        return view('pages.paragliding', compact('locations', 'weatherData'));
     }
 }

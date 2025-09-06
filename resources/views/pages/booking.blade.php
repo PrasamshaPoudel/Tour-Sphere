@@ -223,9 +223,9 @@
                             <label class="block text-sm font-medium text-gray-700 mb-3">Budget Range</label>
                             <select name="budget" class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
                                 <option value="">Select Budget</option>
-                                <option value="budget" {{ old('budget') == 'budget' ? 'selected' : '' }}>Budget ($500-$1000)</option>
-                                <option value="mid-range" {{ old('budget') == 'mid-range' ? 'selected' : '' }}>Mid-Range ($1000-$2000)</option>
-                                <option value="luxury" {{ old('budget') == 'luxury' ? 'selected' : '' }}>Luxury ($2000+)</option>
+                                <option value="budget" {{ old('budget') == 'budget' ? 'selected' : '' }}>Budget (Rs10000-Rs50000)</option>
+                                <option value="mid-range" {{ old('budget') == 'mid-range' ? 'selected' : '' }}>Mid-Range (Rs60000-Rs100000)</option>
+                                <option value="luxury" {{ old('budget') == 'luxury' ? 'selected' : '' }}>Luxury (Rs100000+)</option>
                             </select>
                         </div>
                     </div>
@@ -338,7 +338,7 @@
             <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-8 text-center">
                     <h3 class="text-2xl font-bold mb-4 text-blue-600">Budget Tours</h3>
-                    <div class="text-4xl font-bold mb-2">$500</div>
+                    <div class="text-4xl font-bold mb-2">Rs10000</div>
                     <div class="text-gray-600 mb-4">Starting from</div>
                     <ul class="text-left space-y-2 text-gray-700">
                         <li>✓ Basic accommodation</li>
@@ -350,7 +350,7 @@
 
                 <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-3xl p-8 text-center border-4 border-green-200">
                     <h3 class="text-2xl font-bold mb-4 text-green-600">Mid-Range Tours</h3>
-                    <div class="text-4xl font-bold mb-2">$1500</div>
+                    <div class="text-4xl font-bold mb-2">Rs50000</div>
                     <div class="text-gray-600 mb-4">Starting from</div>
                     <ul class="text-left space-y-2 text-gray-700">
                         <li>✓ Comfortable hotels</li>
@@ -363,7 +363,7 @@
 
                 <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 text-center">
                     <h3 class="text-2xl font-bold mb-4 text-purple-600">Luxury Tours</h3>
-                    <div class="text-4xl font-bold mb-2">$3000</div>
+                    <div class="text-4xl font-bold mb-2">Rs100000</div>
                     <div class="text-gray-600 mb-4">Starting from</div>
                     <ul class="text-left space-y-2 text-gray-700">
                         <li>✓ Premium accommodation</li>
@@ -422,6 +422,26 @@ document.addEventListener('DOMContentLoaded', function() {
             'kathmandu-old': 'Old Kathmandu Tour',
             'gorkha-palace': 'Gorkha Palace Tour',
             'archaeological-sites': 'Archaeological Sites'
+        },
+        'honeymoon': {
+            'romantic-pokhara': 'Romantic Pokhara Retreat',
+            'kathmandu-valley-romance': 'Kathmandu Valley Romance',
+            'mountain-honeymoon-escape': 'Mountain Honeymoon Escape'
+        },
+        'family': {
+            'family-adventure-chitwan': 'Family Adventure in Chitwan',
+            'pokhara-family-fun': 'Pokhara Family Fun',
+            'kathmandu-family-heritage': 'Kathmandu Family Heritage'
+        },
+        'romantic': {
+            'candlelight-dinner-experience': 'Candlelight Dinner Experience',
+            'mountain-romance-package': 'Mountain Romance Package',
+            'heritage-romance-tour': 'Heritage Romance Tour'
+        },
+        'luxury': {
+            'luxury-himalayan-retreat': 'Luxury Himalayan Retreat',
+            'royal-heritage-experience': 'Royal Heritage Experience',
+            'exclusive-wildlife-safari': 'Exclusive Wildlife Safari'
         }
     };
     

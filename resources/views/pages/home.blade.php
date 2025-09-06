@@ -199,9 +199,8 @@
 </section>
 <!-- Popular Things To Do Section -->
 <section class="things-to-do">
-  <div class="section-header">
+  <div class="section-header section-header--center">
     <h2 class="section-title">Popular things to do</h2>
-    <a href="things-to-do.php" class="see-all">See all</a>
   </div>
 
   <div class="things-grid">
@@ -241,9 +240,8 @@
 </section>
 <!-- Top Trending Section -->
 <section class="top-trending">
-  <div class="section-header">
+  <div class="section-header section-header--center">
     <h2 class="section-title">Top Trending</h2>
-    <a href="trending.php" class="see-all">See all</a>
   </div>
 
   <div class="trending-cards">

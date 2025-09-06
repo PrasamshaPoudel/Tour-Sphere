@@ -85,7 +85,7 @@
                             </div>
                             <div class="text-right">
                                 <div class="text-sm opacity-90">Humidity: {{ $experience['weather']['humidity'] }}%</div>
-                                <div class="text-sm opacity-90">Wind: {{ $experience['weather']['wind_speed'] }} m/s</div>
+                                <div class="text-sm opacity-90">Wind: {{ $experience['weather']['humidity'] }} m/s</div>
                             </div>
                         </div>
                     </div>

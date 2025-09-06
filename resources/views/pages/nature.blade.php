@@ -99,12 +99,15 @@
                             Visit Rara, Phewa, and Begnas lakes for ultimate serenity and peace. 
                             Experience crystal-clear waters reflecting majestic mountain peaks.
                         </p>
+                        
+
+                        
                         <div class="flex items-center justify-between">
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 2-5 days
                             </div>
                             <div class="flex gap-3">
-                                <a href="{{ route('nature-details') }}?focus=lakes" 
+                                <a href="{{ route('nature.lakes') }}" 
                                    class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Learn More
                                 </a>
@@ -132,12 +135,15 @@
                             Walk through lush jungles full of wildlife and birds. Discover 
                             rare species and experience the raw beauty of untouched forests.
                         </p>
+                        
+
+                        
                         <div class="flex items-center justify-between">
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 3-7 days
                             </div>
                             <div class="flex gap-3">
-                                <a href="{{ route('nature-details') }}?focus=forests" 
+                                <a href="{{ route('nature.forests_treks') }}" 
                                    class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Learn More
                                 </a>
@@ -165,12 +171,15 @@
                             See Everest, Annapurna, and other peaks from up close. Experience 
                             the awe-inspiring grandeur of the world's highest mountains.
                         </p>
+                        
+
+                        
                         <div class="flex items-center justify-between">
                             <div class="text-sm text-gray-500">
                                 <span class="font-semibold">Duration:</span> 5-14 days
                             </div>
                             <div class="flex gap-3">
-                                <a href="{{ route('nature-details') }}?focus=mountains" 
+                                <a href="{{ route('nature.forests_treks') }}" 
                                    class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Learn More
                                 </a>
