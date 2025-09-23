@@ -109,7 +109,7 @@
                                 class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             View Details
                         </button>
-                        <a href="{{ route('booking') }}?tour=historical-{{ strtolower(str_replace(' ', '-', $experience['name'])) }}&category=historical" 
+                        <a href="{{ route('booking.form') }}?tour=historical-{{ strtolower(str_replace(' ', '-', $experience['name'])) }}&category=historical" 
                            class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             Book Now
                         </a>
@@ -189,7 +189,7 @@
             Book your historical experience today and journey through the fascinating heritage of Nepal.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('booking') }}?category=historical" 
+            <a href="{{ route('booking.form') }}?category=historical" 
                class="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Book Now
             </a>
@@ -216,6 +216,24 @@ function toggleDetails(id) {
 }
 </script>
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

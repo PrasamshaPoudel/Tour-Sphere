@@ -29,35 +29,47 @@
         <h3>Annapurna Base Camp</h3>
         <p>Glacial sanctuary beneath towering peaks.</p>
         <span>7 days</span>
-        <strong>From Rs 18000</strong>
-        <a href="{{ route('destination.details', ['id' => 1]) }}" class="btn">View Details</a>
+        <strong>From Rs 60,000</strong>
+        <div class="dest-card-actions">
+          <a href="{{ route('destination.details', ['id' => 1]) }}" class="btn btn-outline">View Details</a>
+          <a href="{{ route('booking.form') }}?destination_id=7&destination_title=Annapurna Base Camp&price=60000&description=Glacial sanctuary beneath towering peaks." class="btn">Book Now</a>
+        </div>
       </div>
 
       <div class="dest-card">
         <img src="{{ asset('images/ghandruk.jpg') }}" alt="Ghandruk">
         <h3>Ghandruk</h3>
-        <p>Gurung village with Himalayan views.</p>
+        <p>Traditional Gurung village with spectacular Annapurna mountain views.</p>
         <span>3 days</span>
-        <strong>From Rs 12000</strong>
-        <a href="{{ route('destination.details', ['id' => 2]) }}" class="btn">View Details</a>
+        <strong>From Rs 15,000</strong>
+        <div class="dest-card-actions">
+          <a href="{{ route('destination.details', ['id' => 2]) }}" class="btn btn-outline">View Details</a>
+          <a href="{{ route('booking.form') }}?destination_id=8&destination_title=Ghandruk&price=15000&description=Traditional Gurung village with spectacular Annapurna mountain views." class="btn">Book Now</a>
+        </div>
       </div>
 
       <div class="dest-card">
         <img src="{{ asset('images/dhorpatan.jpg') }}" alt="Dhorpatan">
         <h3>Dhorpatan</h3>
-        <p>Remote valley with wild beauty.</p>
+        <p>renowned for its unique wildlife, hunting reserve nestled beneath the Dhaulagiri range.</p>
         <span>7 days</span>
-        <strong>From Rs 20000</strong>
-        <a href="{{ route('destination.details', ['id' => 3]) }}" class="btn">View Details</a>
+        <strong>From Rs 35,000</strong>
+        <div class="dest-card-actions">
+          <a href="{{ route('destination.details', ['id' => 3]) }}" class="btn btn-outline">View Details</a>
+          <a href="{{ route('booking.form') }}?destination_id=9&destination_title=Dhorpatan&price=35000&description=Remote valley with wild beauty." class="btn">Book Now</a>
+        </div>
       </div>
 
       <div class="dest-card">
         <img src="{{ asset('images/illam.jpg') }}" alt="Ilam">
         <h3>Ilam</h3>
-        <p>Tea paradise with winding hills.</p>
+        <p>Tea gardens and mountain views in eastern Nepal.</p>
         <span>4 days</span>
-        <strong>From Rs 10000</strong>
-        <a href="{{ route('destination.details', ['id' => 4]) }}" class="btn">View Details</a>
+        <strong>From Rs 8,000</strong>
+        <div class="dest-card-actions">
+          <a href="{{ route('destination.details', ['id' => 4]) }}" class="btn btn-outline">View Details</a>
+          <a href="{{ route('booking.form') }}?destination_id=10&destination_title=Ilam&price=8000&description=Tea gardens and mountain views in eastern Nepal." class="btn">Book Now</a>
+        </div>
       </div>
     </div>
 </section>

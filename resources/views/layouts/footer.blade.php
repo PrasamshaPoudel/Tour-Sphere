@@ -1,15 +1,43 @@
 <footer class="bg-indigo-600 text-white py-8">
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
         
-        {{-- Contact Section --}}
-        <div>
-            <h3 class="font-bold mb-2">Contact</h3>
-            <p>📞 Phone: +977-9745238797</p>
-            <p>✉️ Email: info@toursphere.com</p>
-            <p>📍 Address: Thamel,Kathmandu</p>
-            <p>🌐 Website: www.toursphere.com</p>
-            <p>⏰ Business Hours: Sunday–Friday, 9:00 AM – 6:00 PM</p>
-        </div>
+     {{-- Contact Section --}}
+<div>
+    <h3 class="font-bold mb-2">Contact</h3>
+
+    <p>
+        📞 Phone: 
+        <a href="tel:+9779745238797" class="hover:underline">
+            +977-9745238797
+        </a>
+    </p>
+
+    <p>
+        ✉️ Email: 
+        <a href="mailto:info@toursphere.com" class="hover:underline">
+            info@toursphere.com
+        </a>
+    </p>
+
+    <p>
+        📍 Address: 
+        <a href="https://maps.google.com/?q=Thamel,Kathmandu" 
+           target="_blank" class="hover:underline">
+            Thamel, Kathmandu
+        </a>
+    </p>
+
+    <p>
+        🌐 Website: 
+        <a href="https://www.toursphere.com" target="_blank" class="hover:underline">
+            www.toursphere.com
+        </a>
+    </p>
+
+    <p>
+        ⏰ Business Hours: Sunday–Friday, 9:00 AM – 6:00 PM
+    </p>
+</div>
 
         {{-- Company Section --}}
         <div>

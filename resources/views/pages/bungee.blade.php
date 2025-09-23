@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Bungee Jumping in Nepal')
+@section('title', 'Bungee Jumping Adventures in Nepal')
+@section('meta_description', 'Experience the ultimate adrenaline rush with Nepal\'s most extreme bungee jumping locations. Professional safety equipment and certified instructors.')
 
 @section('content')
 <!-- Hero Section -->
@@ -8,14 +9,14 @@
     <div class="absolute inset-0 bg-black opacity-40"></div>
     <div class="relative z-10 container mx-auto px-4 h-full flex items-center">
         <div class="max-w-4xl">
-            <h1 class="text-5xl font-bold mb-6">Bungee Jumping in Nepal</h1>
-            <p class="text-xl mb-8">Experience the ultimate adrenaline rush with Nepal's most extreme bungee jump from a 160m suspension bridge over the Bhote Koshi River gorge.</p>
+            <h1 class="text-5xl font-bold mb-6">Bungee Jumping Adventures</h1>
+            <p class="text-xl mb-8">Experience the ultimate adrenaline rush with Nepal's most extreme bungee jumping locations. Professional safety equipment and certified instructors.</p>
             <div class="flex flex-wrap gap-4">
                 <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
-                    <span class="font-semibold">160m High</span>
+                    <span class="font-semibold">3 Locations</span>
                 </div>
                 <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
-                    <span class="font-semibold">New Zealand Standards</span>
+                    <span class="font-semibold">Extreme Heights</span>
                 </div>
                 <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
                     <span class="font-semibold">Professional Safety</span>
@@ -29,9 +30,9 @@
 <section class="py-20 bg-gray-50">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">Ultimate Bungee Experience</h2>
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Choose Your Bungee Adventure</h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Take the ultimate leap of faith with Nepal's most thrilling bungee jumping experience.
+                From moderate heights to extreme drops, find your perfect bungee jumping experience.
             </p>
         </div>
 
@@ -40,14 +41,14 @@
             <div class="bg-white rounded-3xl shadow-2xl overflow-hidden {{ $index % 2 == 1 ? 'md:flex-row-reverse' : '' }} md:flex">
                 <!-- Location Image -->
                 <div class="md:w-1/2 relative">
-                    <img src="{{ asset('images/' . $location['image']) }}" 
+                    <img src="{{ asset($location['image']) }}" 
                          alt="{{ $location['name'] }}" 
                          class="w-full h-96 md:h-full object-cover">
                     <div class="absolute top-6 left-6 bg-red-500 text-white px-4 py-2 rounded-full font-bold">
                         {{ $location['difficulty'] }}
                     </div>
                     <div class="absolute bottom-6 right-6 bg-black bg-opacity-70 text-white px-4 py-2 rounded-full">
-                        {{ $location['cost'] }}
+                        Rs {{ number_format($location['pricing']['low']) }} - Rs {{ number_format($location['pricing']['expensive']) }}
                     </div>
                 </div>
 
@@ -65,8 +66,8 @@
 
                     <!-- Key Info -->
                     <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="bg-red-50 p-4 rounded-lg">
-                            <div class="text-sm text-red-600 font-semibold">Duration</div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="text-sm text-blue-600 font-semibold">Duration</div>
                             <div class="text-lg font-bold text-gray-900">{{ $location['duration'] }}</div>
                         </div>
                         <div class="bg-green-50 p-4 rounded-lg">
@@ -77,7 +78,7 @@
 
                     <!-- Weather Widget -->
                     @if(isset($weatherData[$location['name']]))
-                    <div class="bg-gradient-to-r from-red-500 to-purple-600 text-white p-4 rounded-lg mb-6">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-lg mb-6">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-4">
                                 <div>
@@ -105,7 +106,7 @@
                         <ul class="space-y-2">
                             @foreach($location['highlights'] as $highlight)
                             <li class="flex items-start">
-                                <span class="text-red-500 mr-2">✓</span>
+                                <span class="text-green-500 mr-2">✓</span>
                                 <span class="text-gray-600">{{ $highlight }}</span>
                             </li>
                             @endforeach
@@ -115,10 +116,10 @@
                     <!-- Action Buttons -->
                     <div class="flex gap-4">
                         <button onclick="toggleDetails('{{ $index }}')" 
-                                class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             View Details
                         </button>
-                        <a href="{{ route('booking') }}?tour=bungee-{{ strtolower(str_replace(' ', '-', $location['name'])) }}&category=adventure" 
+                        <a href="{{ route('booking.form', ['category' => 'bungee', 'adventure_destination' => $location['id']]) }}" 
                            class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             Book Now
                         </a>
@@ -133,12 +134,12 @@
                     <div>
                         <h4 class="text-xl font-bold text-gray-900 mb-4">📅 Itinerary</h4>
                         <div class="space-y-3">
-                            @foreach($location['itinerary'] as $item)
+                            @foreach($location['itinerary'] as $day)
                             <div class="flex items-start">
-                                <div class="bg-red-100 text-red-600 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">
+                                <div class="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">
                                     {{ $loop->iteration }}
                                 </div>
-                                <p class="text-gray-700">{{ $item }}</p>
+                                <p class="text-gray-700">{{ $day }}</p>
                             </div>
                             @endforeach
                         </div>
@@ -150,10 +151,29 @@
                         <div class="grid grid-cols-1 gap-2">
                             @foreach($location['things_to_carry'] as $item)
                             <div class="flex items-center">
-                                <span class="text-red-500 mr-2">•</span>
+                                <span class="text-blue-500 mr-2">•</span>
                                 <span class="text-gray-700">{{ $item }}</span>
                             </div>
                             @endforeach
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Details -->
+                <div class="mt-8 pt-8 border-t border-gray-200">
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">💰 Pricing (Per Person)</h4>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="text-center p-4 bg-gray-50 rounded-lg">
+                            <div class="text-sm text-gray-600 mb-1">Low Budget</div>
+                            <div class="text-2xl font-bold text-green-600">Rs {{ number_format($location['pricing']['low']) }}</div>
+                        </div>
+                        <div class="text-center p-4 bg-blue-50 rounded-lg">
+                            <div class="text-sm text-gray-600 mb-1">Medium Budget</div>
+                            <div class="text-2xl font-bold text-blue-600">Rs {{ number_format($location['pricing']['medium']) }}</div>
+                        </div>
+                        <div class="text-center p-4 bg-purple-50 rounded-lg">
+                            <div class="text-sm text-gray-600 mb-1">Premium</div>
+                            <div class="text-2xl font-bold text-purple-600">Rs {{ number_format($location['pricing']['expensive']) }}</div>
                         </div>
                     </div>
                 </div>
@@ -163,24 +183,24 @@
                     <div class="grid md:grid-cols-3 gap-6">
                         <div class="text-center">
                             <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-2xl">🦺</span>
+                                <span class="text-2xl">⚠️</span>
                             </div>
                             <h5 class="font-semibold text-gray-900 mb-2">Safety First</h5>
-                            <p class="text-sm text-gray-600">New Zealand standard safety equipment and procedures.</p>
+                            <p class="text-sm text-gray-600">All equipment provided. Professional guides included.</p>
                         </div>
                         <div class="text-center">
                             <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-2xl">📜</span>
+                                <span class="text-2xl">📸</span>
                             </div>
-                            <h5 class="font-semibold text-gray-900 mb-2">Certificate Included</h5>
-                            <p class="text-sm text-gray-600">Official bungee jumping certificate and T-shirt included.</p>
+                            <h5 class="font-semibold text-gray-900 mb-2">Photo Service</h5>
+                            <p class="text-sm text-gray-600">Professional photos and videos of your jump included.</p>
                         </div>
                         <div class="text-center">
                             <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-2xl">📸</span>
+                                <span class="text-2xl">🏆</span>
                             </div>
-                            <h5 class="font-semibold text-gray-900 mb-2">Video Service</h5>
-                            <p class="text-sm text-gray-600">Professional video recording of your jump available.</p>
+                            <h5 class="font-semibold text-gray-900 mb-2">Certificate</h5>
+                            <p class="text-sm text-gray-600">Jump certificate and achievement badge included.</p>
                         </div>
                     </div>
                 </div>
@@ -195,51 +215,51 @@
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
             <h2 class="text-4xl font-bold text-gray-900 mb-4">Safety & Tips</h2>
-            <p class="text-xl text-gray-600">Everything you need to know for a safe and thrilling bungee jumping experience</p>
+            <p class="text-xl text-gray-600">Everything you need to know for a safe and enjoyable bungee jumping experience</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="text-center">
-                <div class="bg-red-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span class="text-3xl">🦺</span>
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">Safety Equipment</h3>
-                <p class="text-gray-600 text-sm">New Zealand standard harnesses, ropes, and all safety gear provided.</p>
+                <p class="text-gray-600 text-sm">Life jackets, helmets, and all safety gear provided by certified operators.</p>
             </div>
             <div class="text-center">
                 <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span class="text-3xl">👨‍🏫</span>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Expert Instructors</h3>
-                <p class="text-gray-600 text-sm">Licensed and experienced instructors with international certification.</p>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Expert Guides</h3>
+                <p class="text-gray-600 text-sm">Licensed and experienced guides with first aid certification.</p>
             </div>
             <div class="text-center">
                 <div class="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span class="text-3xl">📋</span>
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">Pre-Jump Briefing</h3>
-                <p class="text-gray-600 text-sm">Comprehensive safety briefing and jump instructions before jumping.</p>
+                <p class="text-gray-600 text-sm">Comprehensive safety briefing and jumping instructions before departure.</p>
             </div>
             <div class="text-center">
-                <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="bg-red-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span class="text-3xl">🚨</span>
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">Emergency Support</h3>
-                <p class="text-gray-600 text-sm">24/7 emergency support and medical facilities available.</p>
+                <p class="text-gray-600 text-sm">24/7 emergency support and medical assistance available on-site.</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- CTA Section -->
-<section class="py-20 bg-gradient-to-r from-red-600 to-purple-800 text-white">
+<section class="py-20 bg-gradient-to-r from-red-600 to-purple-700 text-white">
     <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold mb-6">Ready for the Ultimate Adrenaline Rush?</h2>
+        <h2 class="text-4xl font-bold mb-6">Ready for Your Bungee Adventure?</h2>
         <p class="text-xl mb-8 max-w-2xl mx-auto">
-            Book your bungee jumping experience today and take the leap of a lifetime.
+            Book your bungee jumping experience today and feel the ultimate adrenaline rush.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('booking') }}?category=adventure" 
+            <a href="{{ route('booking.form', ['category' => 'bungee']) }}" 
                class="bg-white text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Book Now
             </a>

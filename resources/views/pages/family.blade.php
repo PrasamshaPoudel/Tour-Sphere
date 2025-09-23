@@ -118,7 +118,7 @@
                                 class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             View Details
                         </button>
-                        <a href="{{ route('booking') }}?tour=family-{{ strtolower(str_replace(' ', '-', $package['name'])) }}&category=family" 
+                        <a href="{{ route('booking.form') }}?tour=family-{{ strtolower(str_replace(' ', '-', $package['name'])) }}&category=family" 
                            class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             Book Now
                         </a>
@@ -193,12 +193,13 @@
 <!-- CTA Section -->
 <section class="py-20 bg-gradient-to-r from-blue-600 to-green-800 text-white">
     <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold mb-6">Ready for Your Family Adventure?</h2>
+  <h2 class="text-4xl font-bold mb-6 text-black">Ready for Your Family Adventure?</h2>
+
         <p class="text-xl mb-8 max-w-2xl mx-auto">
             Book your family package today and create memories that will bring your family closer together in the beautiful landscapes of Nepal.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('booking') }}?category=family" 
+            <a href="{{ route('booking.form') }}?category=family" 
                class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Book Now
             </a>
@@ -225,3 +226,9 @@ function toggleDetails(id) {
 }
 </script>
 @endsection
+
+
+
+
+
+

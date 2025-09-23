@@ -109,7 +109,7 @@
                                 class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             View Details
                         </button>
-                        <a href="{{ route('booking') }}?tour=spiritual-{{ strtolower(str_replace(' ', '-', $experience['name'])) }}&category=spiritual" 
+                        <a href="{{ route('booking.form') }}?tour=spiritual-{{ strtolower(str_replace(' ', '-', $experience['name'])) }}&category=spiritual" 
                            class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             Book Now
                         </a>
@@ -189,7 +189,7 @@
             Book your spiritual experience today and embark on a transformative journey of self-discovery and inner peace.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('booking') }}?category=spiritual" 
+            <a href="{{ route('booking.form') }}?category=spiritual" 
                class="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Book Now
             </a>
@@ -216,6 +216,24 @@ function toggleDetails(id) {
 }
 </script>
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

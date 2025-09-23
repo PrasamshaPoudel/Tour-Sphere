@@ -1,296 +1,280 @@
 @extends('layouts.app')
 
-@section('title', 'Historical Experiences - Nepal')
+@section('title', 'Historical Sites in Nepal')
+@section('meta_description', 'Explore Nepal\'s rich historical heritage and ancient monuments through our guided historical tours.')
 
 @section('content')
-    {{-- 🏛️ Hero Section --}}
-    <section class="hero">
-        <div class="hero-bg" style="background-image:url('{{ asset('images/bhaktapur.jpg') }}')"></div>
-        <div class="hero-overlay"></div>
-
-        <div class="hero-content">
-            <h1>Historical <span>Journeys</span></h1>
-            <p>Step into Nepal's glorious past through ancient palaces, forts, and heritage sites</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#sites" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    Explore Sites
-                </a>
-                <a href="{{ route('booking') }}" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 border border-white/30">
-                    Book Tour
-                </a>
-            </div>
-        </div>
-
-        {{-- bottom wave --}}
-        <svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none">
-            <path d="M0,80 C300,120 600,0 900,60 C1100,100 1300,80 1440,60 L1440,100 L0,100 Z"></path>
-        </svg>
-    </section>
-
-    {{-- 🎯 Stats Section --}}
-    <section class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-16">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div class="space-y-2">
-                    <div class="text-4xl font-bold">1000+</div>
-                    <div class="text-indigo-100">Years of History</div>
+<!-- Hero Section -->
+<section class="relative h-96 bg-gradient-to-r from-gray-900 to-amber-700 text-white">
+    <div class="absolute inset-0 bg-black opacity-40"></div>
+    <div class="relative z-10 container mx-auto px-4 h-full flex items-center">
+        <div class="max-w-4xl">
+            <h1 class="text-5xl font-bold mb-6">Historical Sites</h1>
+            <p class="text-xl mb-8">Explore Nepal's rich historical heritage and ancient monuments through our guided historical tours.</p>
+            <div class="flex flex-wrap gap-4">
+                <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                    <span class="font-semibold">3 Historic Sites</span>
                 </div>
-                <div class="space-y-2">
-                    <div class="text-4xl font-bold">10</div>
-                    <div class="text-indigo-100">UNESCO Sites</div>
+                <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                    <span class="font-semibold">Ancient Monuments</span>
                 </div>
-                <div class="space-y-2">
-                    <div class="text-4xl font-bold">50+</div>
-                    <div class="text-indigo-100">Ancient Temples</div>
-                </div>
-                <div class="space-y-2">
-                    <div class="text-4xl font-bold">100+</div>
-                    <div class="text-indigo-100">Heritage Sites</div>
+                <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
+                    <span class="font-semibold">Cultural Heritage</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    {{-- 🌟 Intro Section --}}
-    <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center">
-                <div class="inline-block bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                    Why Explore Nepal's History?
-                </div>
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
-                    Where Every Stone Tells a <span class="text-indigo-600">Story</span>
-                </h2>
-                <p class="text-xl text-gray-600 leading-relaxed mb-12">
-                    From ancient kingdoms to modern times, Nepal's history is etched in its magnificent architecture, 
-                    royal palaces, and sacred monuments. Discover the tales of kings, warriors, and civilizations 
-                    that shaped this remarkable land.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    {{-- 🏛️ Historical Sites Grid --}}
-    <section id="sites" class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                    Discover <span class="text-indigo-600">Historical Treasures</span>
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    From royal palaces to ancient temples, explore the architectural marvels 
-                    and historical landmarks that define Nepal's rich heritage.
-                </p>
-            </div>
-
-            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {{-- Palaces --}}
-                <div class="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                    <div class="relative overflow-hidden">
-                        <img src="{{ asset('images/bhaktapur.jpg') }}" alt="Ancient Palaces" 
-                             class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-indigo-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                            Royal
-                        </div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Royal Palaces</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            Walk through the magnificent Durbar Squares of Kathmandu, Patan, and Bhaktapur. 
-                            Experience the grandeur of ancient royal architecture.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-500">
-                                <span class="font-semibold">Duration:</span> 4-6 hours
-                            </div>
-                            <div class="flex gap-3">
-                                <a href="{{ route('historical-details') }}?focus=palaces" 
-                                   class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
-                                    Learn More
-                                </a>
-                                <a href="{{ route('booking') }}?category=historical&tour=palaces" 
-                                   class="bg-white text-indigo-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
-                                    Book Now
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Heritage Sites --}}
-                <div class="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                    <div class="relative overflow-hidden">
-                        <img src="{{ asset('images/ruins.jpg') }}" alt="Heritage Sites" 
-                             class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                            UNESCO
-                        </div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Heritage Sites</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            Visit UNESCO World Heritage sites including Swayambhunath, Boudhanath, 
-                            and the sacred birthplace of Buddha in Lumbini.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-500">
-                                <span class="font-semibold">Duration:</span> 6-8 hours
-                            </div>
-                            <div class="flex gap-3">
-                                <a href="{{ route('historical-details') }}?focus=heritage" 
-                                   class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
-                                    Learn More
-                                </a>
-                                <a href="{{ route('booking') }}?category=historical&tour=heritage" 
-                                   class="bg-white text-indigo-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
-                                    Book Now
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Museums --}}
-                <div class="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                    <div class="relative overflow-hidden">
-                        <img src="{{ asset('images/museum.jpg') }}" alt="Museums" 
-                             class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                            Cultural
-                        </div>
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Museums & Galleries</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            Explore Nepal's rich history through art, artifacts, and preserved collections. 
-                            Learn about ancient civilizations and cultural evolution.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-500">
-                                <span class="font-semibold">Duration:</span> 2-4 hours
-                            </div>
-                            <div class="flex gap-3">
-                                <a href="{{ route('historical-details') }}?focus=museums" 
-                                   class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
-                                    Learn More
-                                </a>
-                                <a href="{{ route('booking') }}?category=historical&tour=museums" 
-                                   class="bg-white text-indigo-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-colors">
-                                    Book Now
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- 📞 Contact & CTA Section --}}
-    <section class="py-20 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800 text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                Ready to Explore <span class="text-yellow-300">History</span>?
-            </h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto">
-                Our historical experts are here to guide you through Nepal's fascinating past. 
-                Book your heritage tour and uncover the stories that shaped this remarkable land.
+<!-- Historical Destinations Section -->
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Choose Your Historical Journey</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Discover Nepal's ancient history, royal palaces, and cultural heritage with expert guides.
             </p>
-            
-            <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-                <a href="{{ route('booking') }}" 
-                   class="bg-white text-indigo-600 font-bold px-8 py-4 rounded-full text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-xl">
-                    Book Historical Tour
-                </a>
-                <a href="{{ route('contact') }}" 
-                   class="bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-full text-lg hover:bg-white hover:text-indigo-600 transition-all duration-300">
-                    Contact Us
-                </a>
+        </div>
+
+        <div class="space-y-16">
+            @foreach($historicalData as $index => $destination)
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden {{ $index % 2 == 1 ? 'md:flex-row-reverse' : '' }} md:flex">
+                <!-- Destination Image -->
+                <div class="md:w-1/2 relative">
+                    <img src="{{ asset($destination['image']) }}" 
+                         alt="{{ $destination['name'] }}" 
+                         class="w-full h-96 md:h-full object-cover">
+                    <div class="absolute top-6 left-6 bg-red-500 text-white px-4 py-2 rounded-full font-bold">
+                        {{ $destination['difficulty'] }}
+                    </div>
+                    <div class="absolute bottom-6 right-6 bg-black bg-opacity-70 text-white px-4 py-2 rounded-full">
+                        Rs {{ number_format($destination['pricing']['low']) }} - Rs {{ number_format($destination['pricing']['expensive']) }}
+                    </div>
+                </div>
+
+                <!-- Destination Details -->
+                <div class="md:w-1/2 p-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-3xl font-bold text-gray-900">{{ $destination['name'] }}</h3>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm text-gray-500">📍</span>
+                            <span class="text-sm text-gray-600">{{ $destination['location'] }}</span>
+                        </div>
+                    </div>
+
+                    <p class="text-gray-600 mb-6 leading-relaxed">{{ $destination['description'] }}</p>
+
+                    <!-- Key Info -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="text-sm text-blue-600 font-semibold">Duration</div>
+                            <div class="text-lg font-bold text-gray-900">{{ $destination['duration'] }}</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <div class="text-sm text-green-600 font-semibold">Best Season</div>
+                            <div class="text-lg font-bold text-gray-900">{{ $destination['best_season'] }}</div>
+                        </div>
+                    </div>
+
+                    <!-- Weather Widget -->
+                    @if($destination['weather'])
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-lg mb-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-4xl">{{ $destination['weather']['icon'] }}</div>
+                                <div>
+                                    <div class="text-sm opacity-90">Current Weather - {{ explode(',', $destination['location'])[0] }}</div>
+                                    <div class="text-2xl font-bold">{{ $destination['weather']['temperature'] }}°C</div>
+                                    <div class="text-sm capitalize">{{ $destination['weather']['description'] }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
+                    <!-- Highlights -->
+                    <div class="mb-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-3">Highlights</h4>
+                        <ul class="space-y-2">
+                            @foreach($destination['highlights'] as $highlight)
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span class="text-gray-600">{{ $highlight }}</span>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex gap-4">
+                        <button onclick="toggleDetails('{{ $index }}')" 
+                                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                            View Details
+                        </button>
+                        <a href="{{ route('booking.form', ['category' => 'historical', 'adventure_destination' => $destination['id']]) }}" 
+                           class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                            Book Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expandable Details -->
+            <div id="details-{{ $index }}" class="hidden bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Itinerary -->
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">📅 Itinerary</h4>
+                        <div class="space-y-3">
+                            @foreach($destination['itinerary'] as $day)
+                            <div class="flex items-start">
+                                <div class="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">
+                                    {{ $loop->iteration }}
+                                </div>
+                                <p class="text-gray-700">{{ $day }}</p>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <!-- Things to Carry -->
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">🎒 Things to Carry</h4>
+                        <div class="grid grid-cols-1 gap-2">
+                            @foreach($destination['things_to_carry'] as $item)
+                            <div class="flex items-center">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <span class="text-gray-700">{{ $item }}</span>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Details -->
+                <div class="mt-8 pt-8 border-t border-gray-200">
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">💰 Pricing (Per Person)</h4>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="text-center p-4 bg-gray-50 rounded-lg">
+                            <div class="text-sm text-gray-600 mb-1">Low Budget</div>
+                            <div class="text-2xl font-bold text-green-600">Rs {{ number_format($destination['pricing']['low']) }}</div>
+                        </div>
+                        <div class="text-center p-4 bg-blue-50 rounded-lg">
+                            <div class="text-sm text-gray-600 mb-1">Medium Budget</div>
+                            <div class="text-2xl font-bold text-blue-600">Rs {{ number_format($destination['pricing']['medium']) }}</div>
+                        </div>
+                        <div class="text-center p-4 bg-purple-50 rounded-lg">
+                            <div class="text-sm text-gray-600 mb-1">Premium</div>
+                            <div class="text-2xl font-bold text-purple-600">Rs {{ number_format($destination['pricing']['expensive']) }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="mt-8 pt-8 border-t border-gray-200">
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl">🏛️</span>
+                            </div>
+                            <h5 class="font-semibold text-gray-900 mb-2">Ancient Monuments</h5>
+                            <p class="text-sm text-gray-600">Explore centuries-old temples, palaces, and historical monuments.</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl">👨‍🏫</span>
+                            </div>
+                            <h5 class="font-semibold text-gray-900 mb-2">Expert Historians</h5>
+                            <p class="text-sm text-gray-600">Learn from knowledgeable guides with deep historical expertise.</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl">📚</span>
+                            </div>
+                            <h5 class="font-semibold text-gray-900 mb-2">Historical Context</h5>
+                            <p class="text-sm text-gray-600">Gain insights into Nepal's rich cultural and political history.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<!-- Historical Heritage Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Historical Heritage</h2>
+            <p class="text-xl text-gray-600">Everything you need to know for an enriching historical experience</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-3xl">🏛️</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Ancient Architecture</h3>
+                <p class="text-gray-600 text-sm">Discover centuries-old temples, palaces, and architectural marvels.</p>
+            </div>
+            <div class="text-center">
+                <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-3xl">👨‍🏫</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Expert Guides</h3>
+                <p class="text-gray-600 text-sm">Knowledgeable historians and cultural experts guide your journey.</p>
+            </div>
+            <div class="text-center">
+                <div class="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-3xl">📚</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Historical Context</h3>
+                <p class="text-gray-600 text-sm">Learn about Nepal's rich political and cultural history.</p>
+            </div>
+            <div class="text-center">
+                <div class="bg-red-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-3xl">🏺</span>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Cultural Artifacts</h3>
+                <p class="text-gray-600 text-sm">Explore museums and collections of historical artifacts.</p>
             </div>
         </div>
-    </section>
-<style>
-/* Hero Section Styles */
-.hero {
-    position: relative;
-    height: 60vh;
-    min-height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
-}
+    </div>
+</section>
 
-.hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-r from-gray-600 to-amber-700 text-white">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-6">Ready for Your Historical Journey?</h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">
+            Book your historical tour today and discover Nepal's fascinating past.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{{ route('booking.form', ['category' => 'historical']) }}" 
+               class="bg-white text-gray-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                Book Now
+            </a>
+            <a href="{{ route('contact') }}" 
+               class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-600 transition-colors">
+                Contact Us
+            </a>
+        </div>
+    </div>
+</section>
 
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-}
-
-.hero-content {
-    position: relative;
-    z-index: 10;
-    color: white;
-    max-width: 800px;
-    padding: 0 20px;
-}
-
-.hero-content h1 {
-    font-size: 3.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-}
-
-.hero-content h1 span {
-    color: #8b5cf6;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.hero-content p {
-    font-size: 1.25rem;
-    opacity: 0.9;
-    margin-bottom: 2rem;
-}
-
-.wave {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    fill: #f8fafc;
-}
-
-/* Responsive Hero */
-@media (max-width: 768px) {
-    .hero {
-        height: 50vh;
-        min-height: 300px;
-    }
+<script>
+function toggleDetails(index) {
+    const details = document.getElementById('details-' + index);
+    const button = event.target;
     
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    .hero-content p {
-        font-size: 1.1rem;
+    if (details.classList.contains('hidden')) {
+        details.classList.remove('hidden');
+        button.textContent = 'Hide Details';
+    } else {
+        details.classList.add('hidden');
+        button.textContent = 'View Details';
     }
 }
-</style>
+</script>
 @endsection

@@ -1,99 +1,92 @@
 @extends('layouts.app')
 
-@section('title', 'Paragliding in Nepal')
+@section('title', 'Paragliding Adventures in Nepal')
+@section('meta_description', 'Experience the thrill of paragliding over Nepal\'s stunning landscapes. Tandem flights with professional instructors and breathtaking views.')
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative h-96 bg-gradient-to-r from-blue-800 to-sky-600 text-white">
-    <div class="absolute inset-0 bg-black opacity-30"></div>
+<section class="relative h-96 bg-gradient-to-r from-blue-900 to-purple-700 text-white">
+    <div class="absolute inset-0 bg-black opacity-40"></div>
     <div class="relative z-10 container mx-auto px-4 h-full flex items-center">
         <div class="max-w-4xl">
-            <h1 class="text-5xl font-bold mb-6">Paragliding in Nepal</h1>
-            <p class="text-xl mb-8">Soar like an eagle above the majestic Himalayas and pristine valleys. Experience the ultimate freedom of flight with our professional paragliding adventures.</p>
+            <h1 class="text-5xl font-bold mb-6">Paragliding Adventures in Nepal</h1>
+            <p class="text-xl mb-8">Soar above Nepal's breathtaking landscapes and experience the ultimate freedom of flight with professional tandem paragliding.</p>
             <div class="flex flex-wrap gap-4">
                 <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
-                    <span class="font-semibold">All Skill Levels</span>
+                    <span class="font-semibold">2 Locations</span>
                 </div>
                 <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
                     <span class="font-semibold">Tandem Flights</span>
                 </div>
                 <div class="bg-white bg-opacity-20 px-4 py-2 rounded-full">
-                    <span class="font-semibold">Mountain Views</span>
+                    <span class="font-semibold">Professional Safety</span>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Locations Section -->
+<!-- Paragliding Locations Section -->
 <section class="py-20 bg-gray-50">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">Choose Your Flying Destination</h2>
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Choose Your Paragliding Adventure</h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                From the famous Pokhara valley to hidden gems, discover the best paragliding spots in Nepal.
+                Experience the thrill of flight from Nepal's most scenic paragliding locations with professional instructors.
             </p>
         </div>
 
         <div class="space-y-16">
-            @foreach($locations as $index => $location)
+            @foreach($paraglidingData as $index => $destination)
             <div class="bg-white rounded-3xl shadow-2xl overflow-hidden {{ $index % 2 == 1 ? 'md:flex-row-reverse' : '' }} md:flex">
-                <!-- Location Image -->
+                <!-- Destination Image -->
                 <div class="md:w-1/2 relative">
-                    <img src="{{ asset('images/' . $location['image']) }}" 
-                         alt="{{ $location['name'] }}" 
+                    <img src="{{ asset($destination['image']) }}" 
+                         alt="{{ $destination['name'] }}" 
                          class="w-full h-96 md:h-full object-cover">
-                    <div class="absolute top-6 left-6 bg-blue-500 text-white px-4 py-2 rounded-full font-bold">
-                        {{ $location['difficulty'] }}
+                    <div class="absolute top-6 left-6 bg-red-500 text-white px-4 py-2 rounded-full font-bold">
+                        {{ $destination['difficulty'] }}
                     </div>
                     <div class="absolute bottom-6 right-6 bg-black bg-opacity-70 text-white px-4 py-2 rounded-full">
-                        {{ $location['cost'] }}
+                        Rs {{ number_format($destination['pricing']['low']) }} - Rs {{ number_format($destination['pricing']['expensive']) }}
                     </div>
                 </div>
 
-                <!-- Location Details -->
+                <!-- Destination Details -->
                 <div class="md:w-1/2 p-8">
                     <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-3xl font-bold text-gray-900">{{ $location['name'] }}</h3>
+                        <h3 class="text-3xl font-bold text-gray-900">{{ $destination['name'] }}</h3>
                         <div class="flex items-center space-x-2">
                             <span class="text-sm text-gray-500">📍</span>
-                            <span class="text-sm text-gray-600">{{ $location['location'] }}</span>
+                            <span class="text-sm text-gray-600">{{ $destination['location'] }}</span>
                         </div>
                     </div>
 
-                    <p class="text-gray-600 mb-6 leading-relaxed">{{ $location['description'] }}</p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">{{ $destination['description'] }}</p>
 
                     <!-- Key Info -->
                     <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="bg-sky-50 p-4 rounded-lg">
-                            <div class="text-sm text-sky-600 font-semibold">Duration</div>
-                            <div class="text-lg font-bold text-gray-900">{{ $location['duration'] }}</div>
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <div class="text-sm text-blue-600 font-semibold">Duration</div>
+                            <div class="text-lg font-bold text-gray-900">{{ $destination['duration'] }}</div>
                         </div>
                         <div class="bg-green-50 p-4 rounded-lg">
                             <div class="text-sm text-green-600 font-semibold">Best Season</div>
-                            <div class="text-lg font-bold text-gray-900">{{ $location['best_season'] }}</div>
+                            <div class="text-lg font-bold text-gray-900">{{ $destination['best_season'] }}</div>
                         </div>
                     </div>
 
                     <!-- Weather Widget -->
-                    @if(isset($weatherData[$location['name']]))
-                    <div class="bg-gradient-to-r from-sky-500 to-blue-600 text-white p-4 rounded-lg mb-6">
+                    @if($destination['weather'])
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-lg mb-6">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-4">
+                                <div class="text-4xl">{{ $destination['weather']['icon'] }}</div>
                                 <div>
-                                    <img src="https://openweathermap.org/img/wn/{{ $weatherData[$location['name']]['icon'] }}@2x.png" 
-                                         alt="Weather icon" class="w-16 h-16">
+                                    <div class="text-sm opacity-90">Current Weather - {{ explode(',', $destination['location'])[0] }}</div>
+                                    <div class="text-2xl font-bold">{{ $destination['weather']['temperature'] }}°C</div>
+                                    <div class="text-sm capitalize">{{ $destination['weather']['description'] }}</div>
                                 </div>
-                                <div>
-                                    <div class="text-sm opacity-90">Current Weather - {{ explode(',', $location['location'])[0] }}</div>
-                                    <div class="text-2xl font-bold">{{ $weatherData[$location['name']]['temperature'] }}°C</div>
-                                    <div class="text-sm capitalize">{{ $weatherData[$location['name']]['description'] }}</div>
-                                    <div class="text-xs opacity-80">Feels like {{ $weatherData[$location['name']]['feels_like'] }}°C</div>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-sm opacity-90">Humidity: {{ $weatherData[$location['name']]['humidity'] }}%</div>
-                                <div class="text-sm opacity-90">Wind: {{ $weatherData[$location['name']]['wind_speed'] }} m/s</div>
                             </div>
                         </div>
                     </div>
@@ -103,7 +96,7 @@
                     <div class="mb-6">
                         <h4 class="text-lg font-semibold text-gray-900 mb-3">Highlights</h4>
                         <ul class="space-y-2">
-                            @foreach($location['highlights'] as $highlight)
+                            @foreach($destination['highlights'] as $highlight)
                             <li class="flex items-start">
                                 <span class="text-green-500 mr-2">✓</span>
                                 <span class="text-gray-600">{{ $highlight }}</span>
@@ -114,11 +107,11 @@
 
                     <!-- Action Buttons -->
                     <div class="flex gap-4">
-                        <button onclick="toggleDetails('paragliding-{{ $index }}')" 
-                                class="bg-sky-600 hover:bg-sky-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                        <button onclick="toggleDetails('{{ $index }}')" 
+                                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             View Details
                         </button>
-                        <a href="{{ route('booking') }}?tour=paragliding-{{ strtolower(str_replace(' ', '-', $location['name'])) }}&category=adventure" 
+                        <a href="{{ route('booking.form', ['category' => 'paragliding', 'adventure_destination' => $destination['id']]) }}" 
                            class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             Book Now
                         </a>
@@ -127,18 +120,18 @@
             </div>
 
             <!-- Expandable Details -->
-            <div id="details-paragliding-{{ $index }}" class="hidden bg-white rounded-2xl shadow-lg p-8 mb-8">
+            <div id="details-{{ $index }}" class="hidden bg-white rounded-2xl shadow-lg p-8 mb-8">
                 <div class="grid md:grid-cols-2 gap-8">
                     <!-- Itinerary -->
                     <div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-4">🕐 Flight Schedule</h4>
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">📅 Itinerary</h4>
                         <div class="space-y-3">
-                            @foreach($location['itinerary'] as $step)
+                            @foreach($destination['itinerary'] as $day)
                             <div class="flex items-start">
-                                <div class="bg-sky-100 text-sky-600 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">
+                                <div class="bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">
                                     {{ $loop->iteration }}
                                 </div>
-                                <p class="text-gray-700">{{ $step }}</p>
+                                <p class="text-gray-700">{{ $day }}</p>
                             </div>
                             @endforeach
                         </div>
@@ -146,11 +139,11 @@
 
                     <!-- Things to Carry -->
                     <div>
-                        <h4 class="text-xl font-bold text-gray-900 mb-4">🎒 What to Bring</h4>
+                        <h4 class="text-xl font-bold text-gray-900 mb-4">🎒 Things to Carry</h4>
                         <div class="grid grid-cols-1 gap-2">
-                            @foreach($location['things_to_carry'] as $item)
+                            @foreach($destination['things_to_carry'] as $item)
                             <div class="flex items-center">
-                                <span class="text-sky-500 mr-2">•</span>
+                                <span class="text-blue-500 mr-2">•</span>
                                 <span class="text-gray-700">{{ $item }}</span>
                             </div>
                             @endforeach
@@ -158,29 +151,48 @@
                     </div>
                 </div>
 
-                <!-- Safety Information -->
+                <!-- Pricing Details -->
+                <div class="mt-8 pt-8 border-t border-gray-200">
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">💰 Pricing (Per Person)</h4>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="text-center p-4 bg-gray-50 rounded-lg">
+                            <div class="text-sm text-gray-600 mb-1">Low Budget</div>
+                            <div class="text-2xl font-bold text-green-600">Rs {{ number_format($destination['pricing']['low']) }}</div>
+                        </div>
+                        <div class="text-center p-4 bg-blue-50 rounded-lg">
+                            <div class="text-sm text-gray-600 mb-1">Medium Budget</div>
+                            <div class="text-2xl font-bold text-blue-600">Rs {{ number_format($destination['pricing']['medium']) }}</div>
+                        </div>
+                        <div class="text-center p-4 bg-purple-50 rounded-lg">
+                            <div class="text-sm text-gray-600 mb-1">Premium</div>
+                            <div class="text-2xl font-bold text-purple-600">Rs {{ number_format($destination['pricing']['expensive']) }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
                 <div class="mt-8 pt-8 border-t border-gray-200">
                     <div class="grid md:grid-cols-3 gap-6">
                         <div class="text-center">
                             <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-2xl">🛡️</span>
+                                <span class="text-2xl">🪂</span>
                             </div>
-                            <h5 class="font-semibold text-gray-900 mb-2">Safety First</h5>
-                            <p class="text-sm text-gray-600">International certified equipment and experienced pilots.</p>
+                            <h5 class="font-semibold text-gray-900 mb-2">Professional Equipment</h5>
+                            <p class="text-sm text-gray-600">All paragliding equipment provided. Professional tandem instructor included.</p>
                         </div>
                         <div class="text-center">
                             <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <span class="text-2xl">📹</span>
+                                <span class="text-2xl">📸</span>
                             </div>
                             <h5 class="font-semibold text-gray-900 mb-2">Photo & Video</h5>
-                            <p class="text-sm text-gray-600">Professional photos and videos of your flight included.</p>
+                            <p class="text-sm text-gray-600">Professional photos and video recording of your flight experience.</p>
                         </div>
                         <div class="text-center">
                             <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
                                 <span class="text-2xl">🏆</span>
                             </div>
                             <h5 class="font-semibold text-gray-900 mb-2">Certificate</h5>
-                            <p class="text-sm text-gray-600">Flight certificate and memorable experience guaranteed.</p>
+                            <p class="text-sm text-gray-600">Flight certificate and achievement badge included.</p>
                         </div>
                     </div>
                 </div>
@@ -190,61 +202,61 @@
     </div>
 </section>
 
-<!-- Safety & Requirements Section -->
+<!-- Safety & Tips Section -->
 <section class="py-20 bg-white">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">Safety & Requirements</h2>
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Safety & Tips</h2>
             <p class="text-xl text-gray-600">Everything you need to know for a safe and enjoyable paragliding experience</p>
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="text-center">
-                <div class="bg-sky-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-3xl">👥</span>
+                <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-3xl">🪂</span>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Age Requirement</h3>
-                <p class="text-gray-600 text-sm">Minimum age 5 years, maximum weight 120kg for tandem flights.</p>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Professional Equipment</h3>
+                <p class="text-gray-600 text-sm">All paragliding equipment is regularly inspected and certified for safety.</p>
             </div>
             <div class="text-center">
                 <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-3xl">🌤️</span>
+                    <span class="text-3xl">👨‍✈️</span>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Weather Dependent</h3>
-                <p class="text-gray-600 text-sm">Flights depend on weather conditions. Alternative dates offered if needed.</p>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Expert Instructors</h3>
+                <p class="text-gray-600 text-sm">Licensed tandem instructors with years of experience and safety certification.</p>
             </div>
             <div class="text-center">
                 <div class="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-3xl">🏥</span>
+                    <span class="text-3xl">🌤️</span>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Health Requirements</h3>
-                <p class="text-gray-600 text-sm">Basic fitness required. Heart conditions and pregnancy not recommended.</p>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Weather Conditions</h3>
+                <p class="text-gray-600 text-sm">Flights only operate in safe weather conditions with proper wind patterns.</p>
             </div>
             <div class="text-center">
-                <div class="bg-purple-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-3xl">📋</span>
+                <div class="bg-red-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="text-3xl">🚨</span>
                 </div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Insurance Included</h3>
-                <p class="text-gray-600 text-sm">Comprehensive insurance coverage provided for all participants.</p>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Emergency Procedures</h3>
+                <p class="text-gray-600 text-sm">Comprehensive safety briefing and emergency procedures before each flight.</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- CTA Section -->
-<section class="py-20 bg-gradient-to-r from-sky-600 to-blue-800 text-white">
+<section class="py-20 bg-gradient-to-r from-blue-600 to-purple-700 text-white">
     <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold mb-6">Ready to Touch the Sky?</h2>
+        <h2 class="text-4xl font-bold mb-6">Ready for Your Paragliding Adventure?</h2>
         <p class="text-xl mb-8 max-w-2xl mx-auto">
-            Book your paragliding adventure today and experience the freedom of flight above Nepal's stunning landscapes.
+            Book your paragliding experience today and soar above Nepal's stunning landscapes.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('booking') }}?category=adventure" 
-               class="bg-white text-sky-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            <a href="{{ route('booking.form', ['category' => 'paragliding']) }}" 
+               class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Book Now
             </a>
             <a href="{{ route('contact') }}" 
-               class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-sky-600 transition-colors">
+               class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
                 Contact Us
             </a>
         </div>
@@ -252,8 +264,8 @@
 </section>
 
 <script>
-function toggleDetails(id) {
-    const details = document.getElementById('details-' + id);
+function toggleDetails(index) {
+    const details = document.getElementById('details-' + index);
     const button = event.target;
     
     if (details.classList.contains('hidden')) {
@@ -266,4 +278,3 @@ function toggleDetails(id) {
 }
 </script>
 @endsection
-

@@ -15,7 +15,7 @@
                 <a href="#activities" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
                     Explore Activities
                 </a>
-                <a href="{{ route('booking') }}" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 border border-white/30">
+                <a href="{{ route('booking.form') }}" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 border border-white/30">
                     Book Now
                 </a>
             </div>
@@ -147,7 +147,7 @@
                                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Learn More
                                 </a>
-                                <a href="{{ route('booking') }}?tour=rafting-trishuli&category=adventure" 
+                                <a href="{{ route('booking.form') }}?tour=rafting-trishuli&category=adventure" 
                                    class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Book Now
                                 </a>
@@ -187,7 +187,7 @@
                                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Learn More
                                 </a>
-                                <a href="{{ route('booking') }}?tour=pokhara-paragliding&category=adventure" 
+                                <a href="{{ route('booking.form') }}?tour=pokhara-paragliding&category=adventure" 
                                    class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Book Now
                                 </a>
@@ -227,7 +227,7 @@
                                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Learn More
                                 </a>
-                                <a href="{{ route('booking') }}?tour=everest-base-camp&category=adventure" 
+                                <a href="{{ route('booking.form') }}?tour=everest-base-camp&category=adventure" 
                                    class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Book Now
                                 </a>
@@ -267,7 +267,7 @@
                                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Learn More
                                 </a>
-                                <a href="{{ route('booking') }}?tour=bungee-jump&category=adventure" 
+                                <a href="{{ route('booking.form') }}?tour=bungee-jump&category=adventure" 
                                    class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Book Now
                                 </a>
@@ -307,7 +307,7 @@
                                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Learn More
                                 </a>
-                                <a href="{{ route('booking') }}?tour=mountain-biking&category=adventure" 
+                                <a href="{{ route('booking.form') }}?tour=mountain-biking&category=adventure" 
                                    class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Book Now
                                 </a>
@@ -347,7 +347,7 @@
                                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Learn More
                                 </a>
-                                <a href="{{ route('booking') }}?tour=rock-climbing&category=adventure" 
+                                <a href="{{ route('booking.form') }}?tour=rock-climbing&category=adventure" 
                                    class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full font-semibold transition-colors">
                                     Book Now
                                 </a>
@@ -416,7 +416,7 @@
             </p>
             
             <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-                <a href="{{ route('booking') }}" 
+                <a href="{{ route('booking.form') }}" 
                    class="bg-white text-blue-600 font-bold px-8 py-4 rounded-full text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-xl">
                     Book Your Adventure
                 </a>

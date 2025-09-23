@@ -91,8 +91,8 @@
       <img src="{{ asset('images/everest.jpg') }}" alt="Everest">
       <div class="destination-info">
         <h3>Everest Base Camp</h3>
-        <p>Majestic trek to Everest’s base.</p>
-        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
+        <p>Majestic trek to Everest's base.</p>
+        <a href="{{ route('booking.form') }}?destination_id=4&destination_title=Everest Base Camp&price=45000&description=Majestic trek to Everest's base." class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>16 days</span>
           <span>From <strong>Rs 80,000</strong></span>
@@ -105,8 +105,8 @@
       <img src="{{ asset('images/lumbini.jpg') }}" alt="Lumbini">
       <div class="destination-info">
         <h3>Lumbini</h3>
-        <p>Visit the birthplace of Lord Buddha.</p>
-        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
+        <p>Visit the birthplace of Lord Buddha and explore sacred monasteries.</p>
+        <a href="{{ route('booking.form') }}?destination_id=12&destination_title=Lumbini Pilgrimage&price=10000&description=Visit the birthplace of Lord Buddha and sacred monasteries." class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>3 days</span>
           <span>From <strong>Rs 10,000</strong></span>
@@ -119,8 +119,8 @@
       <img src="{{ asset('images/mustang.jpg') }}" alt="Mustang">
       <div class="destination-info">
         <h3>Upper Mustang</h3>
-        <p>Discover the hidden kingdom of Mustang.</p>
-        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
+        <p>Discover the hidden kingdom of Mustang with Tibetan culture and desert landscapes.</p>
+        <a href="{{ route('booking.form') }}?destination_id=14&destination_title=Muktinath Temple&price=45000&description=Sacred temple at 3,800m altitude in Mustang region." class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>10 days</span>
           <span>From <strong>Rs 45,000</strong></span>
@@ -133,8 +133,8 @@
       <img src="{{ asset('images/pokhara.jpg') }}" alt="Pokhara">
       <div class="destination-info">
         <h3>Pokhara</h3>
-        <p>Relax by Phewa Lake and enjoy panoramic mountain views.</p>
-        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
+        <p>Soar above Phewa Lake with paragliding and enjoy panoramic mountain views.</p>
+        <a href="{{ route('booking.form') }}?destination_id=32&destination_title=Pokhara&price=12000" class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>4 days</span>
           <span>From <strong>Rs 12,000</strong></span>
@@ -147,8 +147,8 @@
       <img src="{{ asset('images/chitwan.jpg') }}" alt="Chitwan">
       <div class="destination-info">
         <h3>Chitwan Safari</h3>
-        <p>Wildlife safari with rhinos, tigers, and jungle adventures.</p>
-        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
+        <p>Wildlife safari with rhinos, tigers, elephants, and jungle adventures.</p>
+        <a href="{{ route('booking.form') }}?destination_id=41&destination_title=Chitwan Safari&price=15000" class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>3 days</span>
           <span>From <strong>Rs 15,000</strong></span>
@@ -161,8 +161,8 @@
       <img src="{{ asset('images/annapurnabasecamp.jpg') }}" alt="Annapurna">
       <div class="destination-info">
         <h3>Annapurna Circuit</h3>
-        <p>Legendary trek through diverse landscapes and villages.</p>
-        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
+        <p>Legendary trek through diverse landscapes, villages, and mountain views.</p>
+        <a href="{{ route('booking.form') }}?destination_id=31&destination_title=Annapurna Circuit&price=70000" class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>14 days</span>
           <span>From <strong>Rs 70,000</strong></span>
@@ -175,11 +175,24 @@
       <img src="{{ asset('images/gosaikunda.jpg') }}" alt="Gosaikunda">
       <div class="destination-info">
         <h3>Gosaikunda</h3>
-        <p>Scenic alpine lake and sacred pilgrimage site in Langtang.</p>
-        <a href="{{ route('booking') }}" class="book-btn">Book Now</a>
+        <p>Scenic alpine lake and sacred Hindu pilgrimage site in Langtang.</p>
+        <a href="{{ route('booking.form') }}?destination_id=11&destination_title=Gosaikunda&price=25000&description=Scenic alpine lake and sacred Hindu pilgrimage site in Langtang." class="book-btn">Book Now</a>
         <div class="destination-footer">
           <span>5 days</span>
           <span>From <strong>Rs 25,000</strong></span>
+        </div>
+      </div>
+    </div>
+    <!-- Pathivara -->
+    <div class="destination-card">
+      <img src="{{ asset('images/pathibhara.jpg') }}" alt="Pathivara Temple">
+      <div class="destination-info">
+        <h3>Pathivara</h3>
+        <p>Sacred pilgrimage site in Taplejung with panoramic mountain views.</p>
+        <a href="{{ route('booking.form') }}?destination_id=12&destination_title=Pathivara&price=18000&description=Sacred pilgrimage site in Taplejung with panoramic mountain views." class="book-btn">Book Now</a>
+        <div class="destination-footer">
+          <span>4 days</span>
+          <span>From <strong>Rs 18,000</strong></span>
         </div>
       </div>
     </div>
@@ -191,10 +204,10 @@
   <div class="promo-content">
     <h2 class="section-title">Grab up to <span>35% off</span> on your favorite Destination</h2>
     <p>Limited time offer, don't miss the opportunity</p>
-    <a href="{{ route('booking') }}" class="btn">Book Now</a>
+    <a href="{{ route('booking.form') }}?discount=35&promo=true" class="btn">Book Now</a>
   </div>
   <div class="promo-image">
-    <img src="images/temple-tour.jpg" alt="Travel Offer">
+    <img src="{{ asset('images/offer.jpg') }}" alt="Travel Offer">
   </div>
 </section>
 <!-- Popular Things To Do Section -->
@@ -205,35 +218,35 @@
 
   <div class="things-grid">
     <div class="thing-card">
-      <img src="images/treeking.jpg" alt="Trekking">
+      <img src="{{ asset('images/treeking.jpg') }}" alt="Trekking">
       <h3>Trekking</h3>
     </div>
     <div class="thing-card">
-      <img src="images/junglesafari.jpg" alt="Jungle Safari">
+      <img src="{{ asset('images/junglesafari.jpg') }}" alt="Jungle Safari">
       <h3>Jungle Safari</h3>
     </div>
     <div class="thing-card">
-      <img src="images/city-tour.jpg" alt="City Tour">
+      <img src="{{ asset('images/city-tour.jpg') }}" alt="City Tour">
       <h3>City Tour</h3>
     </div>
     <div class="thing-card">
-      <img src="images/temple-tour.jpg" alt="Temple Tour">
+      <img src="{{ asset('images/temple-tour.jpg') }}" alt="Temple Tour">
       <h3>Temple Tour</h3>
     </div>
     <div class="thing-card">
-      <img src="images/food-haunt.jpg" alt="Food Haunt">
+      <img src="{{ asset('images/food-haunt.jpg') }}" alt="Food Haunt">
       <h3>Food Haunt</h3>
     </div>
     <div class="thing-card">
-      <img src="images/paragliding.jpg" alt="Paragliding">
+      <img src="{{ asset('images/paragliding.jpg') }}" alt="Paragliding">
       <h3>Paragliding</h3>
     </div>
      <div class="thing-card">
-      <img src="images/mountaineering.jpg" alt="Mountaineering">
+      <img src="{{ asset('images/mountaineering.jpg') }}" alt="Mountaineering">
       <h3>Mountaineering</h3>
     </div>
      <div class="thing-card">
-      <img src="images/rafting.jpg" alt="Rafting">
+      <img src="{{ asset('images/rafting.jpg') }}" alt="Rafting">
       <h3>Rafting</h3>
     </div>
   </div>
@@ -246,35 +259,39 @@
 
   <div class="trending-cards">
     <div class="trending-card">
-      <img src="images/annapurnabasecamp.jpg" alt="Annapurna Base Camp">
+      <img src="{{ asset('images/annapurnabasecamp.jpg') }}" alt="Annapurna Base Camp">
       <h3>Annapurna Base Camp</h3>
       <p>Glacial sanctuary beneath towering peaks.</p>
       <span>7 days</span>
-      <strong>From Rs 18000</strong>
-    </div>
+      <strong>From Rs 60,000</strong>
+      <a href="{{ route('booking.form') }}?destination_id=7&destination_title=Annapurna Base Camp&price=60000&description=Glacial sanctuary beneath towering peaks." class="btn">Book Now</a>
+        </div>
 
     <div class="trending-card">
-      <img src="images/ghandruk.jpg" alt="Ghandruk">
+      <img src="{{ asset('images/ghandruk.jpg') }}" alt="Ghandruk">
       <h3>Ghandruk</h3>
       <p>Gurung village with Himalayan views.</p>
       <span>3 days</span>
-      <strong>From Rs 12000</strong>
+      <strong>From Rs 15,000</strong>
+      <a href="{{ route('booking.form') }}?destination_id=8&destination_title=Ghandruk&price=15000&description=Gurung village with Himalayan views." class="btn">Book Now</a>
     </div>
 
     <div class="trending-card">
-      <img src="images/dhorpatan.jpg" alt="Dhorpatan">
+      <img src="{{ asset('images/dhorpatan.jpg') }}" alt="Dhorpatan">
       <h3>Dhorpatan</h3>
       <p>Remote valley with wild beauty.</p>
       <span>7 days</span>
-      <strong>From Rs 20000</strong>
+      <strong>From Rs 35,000</strong>
+      <a href="{{ route('booking.form') }}?destination_id=9&destination_title=Dhorpatan&price=35000&description=Remote valley with wild beauty." class="btn">Book Now</a>
     </div>
 
     <div class="trending-card">
-      <img src="images/illam.jpg" alt="Ilam">
+      <img src="{{ asset('images/illam.jpg') }}" alt="Ilam">
       <h3>Ilam</h3>
       <p>Tea paradise with winding hills.</p>
       <span>4 days</span>
-      <strong>From Rs 10000</strong>
+      <strong>From Rs 8,000</strong>
+      <a href="{{ route('booking.form') }}?destination_id=10&destination_title=Ilam&price=8000&description=Tea paradise with winding hills." class="btn">Book Now</a>
     </div>
   </div>
 </section>
@@ -290,32 +307,34 @@
          I highly recommend them!</p>
     </div>
     <div class="review-author">
-      <img src="images/sejal.jpg" alt="Customer">
+      <img src="{{ asset('images/sejal.jpg') }}" alt="Customer">
       <p>- Sarah <br>Traveller </br></p>
     </div>
   </div>
 </section>
 
 
+
+
     <section class="articles-section">
         <h2>Travel Articles</h2>
         <div class="article-card-container">
             <div class="article-card">
-                <img src="images/dhorpatantrek.jpg" alt="Dhorpatan Trek">
+                <img src="{{ asset('images/dhorpatantrek.jpg') }}" alt="Dhorpatan Trek">
                 <div class="card-content">
                     <h3>🏞 Dhorpatan Trek: Nepal's Untamed Wilderness Alternative</h3>
                     <p>April 06 2025 | By Ali Ansari</p>
                 </div>
             </div>
             <div class="article-card">
-                <img src="images/bardiya.jpg" alt="Bardiya Wildlife Adventure">
+                <img src="{{ asset('images/bardiya.jpg') }}" alt="Bardiya Wildlife Adventure">
                 <div class="card-content">
                     <h3>Exploring the bardiya : A Wildlife Adventure</h3>
                     <p>April 07 2025 | By James Tamanag</p>
                 </div>
             </div>
             <div class="article-card">
-                <img src="images/everestbasecamp.jpg" alt="Everest Base Camp Trek">
+                <img src="{{ asset('images/everestbasecamp.jpg') }}" alt="Everest Base Camp Trek">
                 <div class="card-content">
                     <h3>🏔 Into the Heights: An Unforgettable Everest Base Camp Trek</h3>
                     <p>April 08 2025 | By Steven Adhikari</p>
@@ -329,3 +348,4 @@
 
 
 @endsection
+

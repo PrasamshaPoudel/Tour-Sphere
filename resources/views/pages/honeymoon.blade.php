@@ -88,7 +88,7 @@
                                     <div class="text-sm opacity-90">Current Weather - {{ explode(',', $package['location'])[0] }}</div>
                                     <div class="text-2xl font-bold">{{ $weatherData[$package['name']]['temperature'] }}°C</div>
                                     <div class="text-sm capitalize">{{ $weatherData[$package['name']]['description'] }}</div>
-                                                                   </div>
+                                </div>
                             </div>
                             <div class="text-right">
                                 <div class="text-sm opacity-90">Humidity: {{ $weatherData[$package['name']]['humidity'] }}%</div>
@@ -117,7 +117,7 @@
                                 class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             View Details
                         </button>
-                        <a href="{{ route('booking') }}?tour=honeymoon-{{ strtolower(str_replace(' ', '-', $package['name'])) }}&category=honeymoon" 
+                        <a href="{{ route('booking.form') }}?tour=honeymoon-{{ strtolower(str_replace(' ', '-', $package['name'])) }}&category=honeymoon" 
                            class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             Book Now
                         </a>
@@ -197,7 +197,7 @@
             Book your romantic getaway today and create memories that will last a lifetime in the beautiful landscapes of Nepal.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('booking') }}?category=honeymoon" 
+            <a href="{{ route('booking.form') }}?category=honeymoon" 
                class="bg-white text-pink-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Book Now
             </a>

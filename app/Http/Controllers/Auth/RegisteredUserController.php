@@ -40,12 +40,12 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'user',
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        // Don't auto-login, redirect to login page with success message
+        return redirect()->route('login')->with('success', 'Registration successful! Please login with your credentials.');
     }
 }

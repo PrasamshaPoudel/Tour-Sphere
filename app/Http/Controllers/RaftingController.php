@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\WeatherService;
+use App\Services\AdventureDestinationService;
 
 class RaftingController extends Controller
 {
     public function index(WeatherService $weatherService)
     {
-        // River data with detailed information
-        $rivers = [
+        // Get rafting destinations from AdventureDestinationService
+        $raftingData = AdventureDestinationService::getDestinationsByCategory('rafting');
+        $rivers = $raftingData['destinations'] ?? [];
+        
+        // Legacy river data (keeping for backward compatibility)
+        $legacyRivers = [
             [
                 'name' => 'Seti River',
                 'location' => 'Pokhara, Nepal',
@@ -201,23 +206,70 @@ class RaftingController extends Controller
         $weatherData = [];
         $forecastData = [];
         foreach ($rivers as $river) {
-            // Extract city name from location (e.g., "Pokhara, Nepal" -> "Pokhara")
-            $city = explode(',', $river['location'])[0];
+            // Extract city name from location - handle both old and new data structures
+            $city = 'Pokhara'; // Default city
+            if (isset($river['location'])) {
+                // Old data structure
+                $city = explode(',', $river['location'])[0];
+            } else {
+                // New data structure - use default city or extract from name
+                if (strpos(strtolower($river['name']), 'pokhara') !== false) {
+                    $city = 'Pokhara';
+                } elseif (strpos(strtolower($river['name']), 'kathmandu') !== false) {
+                    $city = 'Kathmandu';
+                } elseif (strpos(strtolower($river['name']), 'mustang') !== false) {
+                    $city = 'Pokhara'; // Mustang is closer to Pokhara
+                }
+            }
             
             try {
                 $weatherResult = $weatherService->getCurrentAndForecastByCity($city);
                 
                 // Current weather
-                if ($weatherResult['current']['ok']) {
+                if ($weatherResult['current']['ok'] && isset($weatherResult['current']['data'])) {
                     $data = $weatherResult['current']['data'];
-                    $weatherData[$river['name']] = [
-                        'temperature' => round($data['main']['temp']),
-                        'description' => $data['weather'][0]['description'] ?? 'Clear sky',
-                        'humidity' => $data['main']['humidity'],
-                        'wind_speed' => round($data['wind']['speed'], 1),
-                        'icon' => $data['weather'][0]['icon'] ?? '01d',
-                        'feels_like' => round($data['main']['feels_like'] ?? $data['main']['temp'])
-                    ];
+                    
+                    // Safely check and extract weather data
+                    if (is_array($data) && 
+                        isset($data['main']) && 
+                        is_array($data['main']) && 
+                        isset($data['main']['temp']) && 
+                        isset($data['weather']) && 
+                        is_array($data['weather']) && 
+                        count($data['weather']) > 0) {
+                        
+                        $weatherItem = $data['weather'][0];
+                        
+                        // Double check that weather item is an array
+                        if (is_array($weatherItem)) {
+                            $weatherData[$river['name']] = [
+                                'temperature' => round($data['main']['temp']),
+                                'description' => $weatherItem['description'] ?? 'Clear sky',
+                                'humidity' => $data['main']['humidity'] ?? 65,
+                                'wind_speed' => round($data['wind']['speed'] ?? 3.2, 1),
+                                'icon' => $weatherItem['icon'] ?? '01d',
+                                'feels_like' => round($data['main']['feels_like'] ?? $data['main']['temp'])
+                            ];
+                        } else {
+                            $weatherData[$river['name']] = [
+                                'temperature' => 22,
+                                'description' => 'Weather data incomplete',
+                                'humidity' => 65,
+                                'wind_speed' => 3.2,
+                                'icon' => '01d',
+                                'feels_like' => 22
+                            ];
+                        }
+                    } else {
+                        $weatherData[$river['name']] = [
+                            'temperature' => 22,
+                            'description' => 'Weather data incomplete',
+                            'humidity' => 65,
+                            'wind_speed' => 3.2,
+                            'icon' => '01d',
+                            'feels_like' => 22
+                        ];
+                    }
                 } else {
                     $weatherData[$river['name']] = [
                         'temperature' => 22,
@@ -250,6 +302,6 @@ class RaftingController extends Controller
             }
         }
 
-        return view('pages.rafting', compact('rivers', 'weatherData', 'forecastData'));
+        return view('pages.rafting', compact('rivers', 'weatherData', 'forecastData', 'raftingData'));
     }
 }

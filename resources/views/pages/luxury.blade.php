@@ -118,7 +118,7 @@
                                 class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             View Details
                         </button>
-                        <a href="{{ route('booking') }}?tour=luxury-{{ strtolower(str_replace(' ', '-', $package['name'])) }}&category=luxury" 
+                        <a href="{{ route('booking.form') }}?tour=luxury-{{ strtolower(str_replace(' ', '-', $package['name'])) }}&category=luxury" 
                            class="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             Book Now
                         </a>
@@ -198,7 +198,7 @@
             Book your luxury experience today and indulge in Nepal's most exclusive and prestigious offerings with unparalleled service and comfort.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('booking') }}?category=luxury" 
+            <a href="{{ route('booking.form') }}?category=luxury" 
                class="bg-white text-yellow-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Book Now
             </a>
@@ -225,3 +225,9 @@ function toggleDetails(id) {
 }
 </script>
 @endsection
+
+
+
+
+
+

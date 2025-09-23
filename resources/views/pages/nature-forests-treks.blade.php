@@ -117,7 +117,7 @@ $entries = [
 
           <div class="flex gap-4">
             <button onclick="toggleForestDetails('{{ $index }}')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">View Details</button>
-            <a href="{{ route('booking') }}?tour={{ strtolower(str_replace(' ', '-', $destination['name'])) }}&category=nature" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">Book Now</a>
+            <a href="{{ route('booking.form') }}?tour={{ strtolower(str_replace(' ', '-', $destination['name'])) }}&category=nature" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">Book Now</a>
           </div>
         </div>
       </div>
@@ -154,7 +154,7 @@ $entries = [
     <h2 class="text-4xl font-bold mb-6">Plan Your Nature Journey</h2>
     <p class="text-xl mb-8 max-w-2xl mx-auto">We\'ll tailor forests and trek combinations to match your time and fitness.</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="{{ route('booking') }}?category=nature" class="bg-white text-indigo-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Book Now</a>
+      <a href="{{ route('booking.form') }}?category=nature" class="bg-white text-indigo-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">Book Now</a>
       <a href="{{ route('contact') }}" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-indigo-700 transition-colors">Contact Us</a>
     </div>
   </div>

@@ -4,214 +4,84 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\WeatherService;
+use App\Services\AdventureDestinationService;
 
 class ParaglidingController extends Controller
 {
     public function index(WeatherService $weatherService)
     {
-        $locations = [
-            [
-                'name' => 'Pokhara Paragliding',
-                'location' => 'Pokhara, Nepal',
-                'difficulty' => 'Beginner to Advanced',
-                'duration' => '30 minutes - 2 hours',
-                'best_season' => 'October to April',
-                'cost' => 'Rs 8,000 - Rs 15,000',
-                'description' => 'Soar above the beautiful Pokhara valley with stunning views of the Annapurna range, Phewa Lake, and the surrounding hills. Perfect for beginners and experienced pilots alike.',
-                'highlights' => [
-                    'Panoramic views of Annapurna mountain range',
-                    'Bird\'s eye view of Phewa Lake',
-                    'Professional tandem flights available',
-                    'Photo and video service included',
-                    'International certified instructors'
-                ],
-                'itinerary' => [
-                    'Morning: Pick up from hotel, drive to Sarangkot (30 minutes)',
-                    'Pre-flight: Safety briefing and equipment check (15 minutes)', 
-                    'Flight: Paragliding experience with instructor (30-60 minutes)',
-                    'Landing: Safe landing at Phewa Lake side',
-                    'Return: Transport back to hotel with photos/videos'
-                ],
-                'things_to_carry' => [
-                    'Comfortable clothing (avoid loose items)',
-                    'Closed-toe shoes (sneakers recommended)',
-                    'Sunglasses with strap',
-                    'Small backpack',
-                    'Camera (GoPro style recommended)',
-                    'Light jacket (can get windy)',
-                    'Cash for tips and extras'
-                ],
-                'image' => 'para.jpg',
-                'weather' => [
-                    'temperature' => 24,
-                    'description' => 'Clear skies',
-                    'humidity' => 60,
-                    'wind_speed' => 2.5,
-                    'icon' => '01d'
-                ]
-            ],
-            [
-                'name' => 'Bandipur Paragliding',
-                'location' => 'Bandipur, Nepal',
-                'difficulty' => 'Intermediate to Advanced',
-                'duration' => '45 minutes - 1.5 hours',
-                'best_season' => 'October to March',
-                'cost' => 'Rs 10,000 - Rs 18,000',
-                'description' => 'Experience paragliding from the historic hill town of Bandipur with spectacular mountain views and traditional Newari architecture below.',
-                'highlights' => [
-                    'Historic Newari town views',
-                    'Himalayan mountain panorama',
-                    'Thermal flying conditions',
-                    'Cultural heritage exploration',
-                    'Less crowded than Pokhara'
-                ],
-                'itinerary' => [
-                    'Morning: Drive to Bandipur from Kathmandu/Pokhara',
-                    'Arrival: Check equipment and weather conditions',
-                    'Launch: Take off from designated hill station',
-                    'Flight: Extended flying time over valleys',
-                    'Cultural: Optional Bandipur heritage walk'
-                ],
-                'things_to_carry' => [
-                    'Warm layers (higher altitude)',
-                    'Sturdy hiking boots',
-                    'Wind-resistant jacket',
-                    'Water bottle',
-                    'Energy snacks',
-                    'Personal medication',
-                    'Overnight bag (if staying)'
-                ],
-                'image' => 'paragliding.jpg',
-                'weather' => [
-                    'temperature' => 20,
-                    'description' => 'Partly cloudy',
-                    'humidity' => 65,
-                    'wind_speed' => 3.0,
-                    'icon' => '02d'
-                ]
-            ],
-            [
-                'name' => 'Sarangkot Paragliding',
-                'location' => 'Sarangkot, Pokhara',
-                'difficulty' => 'Beginner Friendly',
-                'duration' => '20-45 minutes',
-                'best_season' => 'September to May',
-                'cost' => 'Rs 6,000 - Rs 12,000',
-                'description' => 'The most popular paragliding spot in Nepal with consistent thermals and stunning views of the Annapurna range and Phewa Lake below.',
-                'highlights' => [
-                    'Consistent flying conditions',
-                    'Perfect for first-time flyers',
-                    'Spectacular lake and mountain views',
-                    'Easy access from Pokhara city',
-                    'Professional photo/video service'
-                ],
-                'itinerary' => [
-                    'Morning: Hotel pickup and drive to Sarangkot (45 minutes)',
-                    'Pre-flight: Equipment check and safety briefing (20 minutes)',
-                    'Flight: Tandem paragliding experience (20-45 minutes)',
-                    'Landing: Soft landing near Phewa Lake',
-                    'Return: Transport back to hotel with memories'
-                ],
-                'things_to_carry' => [
-                    'Comfortable sports clothing',
-                    'Closed shoes (no sandals)',
-                    'Sunglasses with strap',
-                    'Light jacket for wind',
-                    'Camera or GoPro',
-                    'Small bag for personal items',
-                    'Positive attitude and excitement!'
-                ],
-                'image' => 'paragliding.jpg',
-                'weather' => [
-                    'temperature' => 26,
-                    'description' => 'Perfect flying weather',
-                    'humidity' => 55,
-                    'wind_speed' => 2.8,
-                    'icon' => '01d'
-                ]
-            ],
-            [
-                'name' => 'Nagarkot Paragliding',
-                'location' => 'Nagarkot, Nepal',
-                'difficulty' => 'Intermediate',
-                'duration' => '30-60 minutes',
-                'best_season' => 'October to April',
-                'cost' => 'Rs 12,000 - Rs 20,000',
-                'description' => 'Fly from the famous hill station of Nagarkot with panoramic views of the Himalayas including Everest on clear days.',
-                'highlights' => [
-                    'Himalayan range panoramic views',
-                    'Possible Everest sightings on clear days',
-                    'Historic hill station launch point',
-                    'Longer flight duration',
-                    'Kathmandu valley bird\'s eye view'
-                ],
-                'itinerary' => [
-                    'Early morning: Drive from Kathmandu to Nagarkot (1.5 hours)',
-                    'Preparation: Weather assessment and equipment setup',
-                    'Flight: Extended paragliding with mountain views',
-                    'Exploration: Optional Nagarkot sunrise viewpoint visit',
-                    'Return: Drive back to Kathmandu with lunch stop'
-                ],
-                'things_to_carry' => [
-                    'Warm layers (higher altitude)',
-                    'Windproof jacket',
-                    'Sturdy hiking boots',
-                    'Binoculars for mountain viewing',
-                    'Camera with extra batteries',
-                    'Water and light snacks',
-                    'Overnight bag if staying in Nagarkot'
-                ],
-                'image' => 'para.jpg',
-                'weather' => [
-                    'temperature' => 18,
-                    'description' => 'Cool and clear',
-                    'humidity' => 45,
-                    'wind_speed' => 4.0,
-                    'icon' => '01d'
-                ]
-            ]
-        ];
-
-        // Get weather data for each location
-        $weatherData = [];
-        foreach ($locations as $location) {
-            $city = explode(',', $location['location'])[0];
+        // Get paragliding destinations from AdventureDestinationService
+        $paraglidingData = AdventureDestinationService::getDestinationsByCategory('paragliding');
+        
+        // Get weather data for each destination
+        $destinationsWithWeather = [];
+        $destinations = $paraglidingData['destinations'] ?? [];
+        foreach ($destinations as $destination) {
+            $city = $destination['location'] ?? 'Pokhara'; // Default to Pokhara if location not specified
+            
+            // Extract city name from location string (e.g., "Pokhara, Nepal" -> "Pokhara")
+            if (strpos($city, ',') !== false) {
+                $city = trim(explode(',', $city)[0]);
+            }
             
             try {
-                $weatherResult = $weatherService->getCurrentByCity($city);
+                $weatherResponse = $weatherService->getCurrentByCity($city);
                 
-                if ($weatherResult['ok']) {
-                    $data = $weatherResult['data'];
-                    $weatherData[$location['name']] = [
-                        'temperature' => round($data['main']['temp']),
-                        'description' => $data['weather'][0]['description'] ?? 'Clear sky',
-                        'humidity' => $data['main']['humidity'],
-                        'wind_speed' => round($data['wind']['speed'], 1),
-                        'icon' => $data['weather'][0]['icon'] ?? '01d',
-                        'feels_like' => round($data['main']['feels_like'] ?? $data['main']['temp'])
-                    ];
-                } else {
-                    $weatherData[$location['name']] = [
-                        'temperature' => 24,
-                        'description' => 'Weather unavailable',
-                        'humidity' => 60,
-                        'wind_speed' => 2.5,
-                        'icon' => '02d',
-                        'feels_like' => 26
-                    ];
+                // Initialize weather as null by default
+                $destination['weather'] = null;
+                
+                if ($weatherResponse['ok'] && isset($weatherResponse['data'])) {
+                    $weatherData = $weatherResponse['data'];
+                    
+                    // Safely check and extract weather data
+                    if (is_array($weatherData) && 
+                        isset($weatherData['main']) && 
+                        is_array($weatherData['main']) && 
+                        isset($weatherData['main']['temp']) && 
+                        isset($weatherData['weather']) && 
+                        is_array($weatherData['weather']) && 
+                        count($weatherData['weather']) > 0) {
+                        
+                        $weatherItem = $weatherData['weather'][0];
+                        
+                        // Double check that weather item is an array
+                        if (is_array($weatherItem)) {
+                            $destination['weather'] = [
+                                'temperature' => round($weatherData['main']['temp']),
+                                'description' => ucfirst($weatherItem['description'] ?? 'Unknown'),
+                                'icon' => $this->getWeatherIcon($weatherItem['icon'] ?? '01d')
+                            ];
+                        }
+                    }
                 }
             } catch (\Exception $e) {
-                $weatherData[$location['name']] = [
-                    'temperature' => 24,
-                    'description' => 'Weather unavailable',
-                    'humidity' => 60,
-                    'wind_speed' => 2.5,
-                    'icon' => '02d',
-                    'feels_like' => 26
-                ];
+                $destination['weather'] = null;
             }
+            
+            $destinationsWithWeather[] = $destination;
         }
+        
+        return view('pages.paragliding', [
+            'paraglidingData' => $destinationsWithWeather,
+            'pageTitle' => 'Paragliding Adventures in Nepal',
+            'metaDescription' => 'Experience the thrill of paragliding over Nepal\'s stunning landscapes. Tandem flights with professional instructors and breathtaking views.'
+        ]);
+    }
 
-        return view('pages.paragliding', compact('locations', 'weatherData'));
+    private function getWeatherIcon($iconCode)
+    {
+        $iconMap = [
+            '01d' => '☀️', '01n' => '🌙',
+            '02d' => '⛅', '02n' => '☁️',
+            '03d' => '☁️', '03n' => '☁️',
+            '04d' => '☁️', '04n' => '☁️',
+            '09d' => '🌧️', '09n' => '🌧️',
+            '10d' => '🌦️', '10n' => '🌧️',
+            '11d' => '⛈️', '11n' => '⛈️',
+            '13d' => '❄️', '13n' => '❄️',
+            '50d' => '🌫️', '50n' => '🌫️'
+        ];
+        
+        return $iconMap[$iconCode] ?? '🌤️';
     }
 }

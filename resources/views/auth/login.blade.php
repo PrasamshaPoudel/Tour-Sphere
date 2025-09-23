@@ -19,130 +19,116 @@
     </svg>
 </section>
 
-<div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl w-full">
+<div class="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-pink-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl w-full">
         <!-- Main Container -->
         <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
-            <div class="flex">
-                <!-- Left Side - Image/Info -->
-                <div class="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-600 to-indigo-700 relative overflow-hidden">
-                    <!-- Background Pattern -->
-                    <div class="absolute inset-0 opacity-10">
-                        <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                                    <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5"/>
-                                </pattern>
-                            </defs>
-                            <rect width="100" height="100" fill="url(#grid)"/>
+            <!-- Forms Section -->
+            <div class="w-full p-8 lg:p-12 relative overflow-hidden">
+                <!-- Simple Toggle Section -->
+                <div class="text-center mb-8">
+                    <button type="button" id="toggleAuth" 
+                            class="inline-flex items-center px-8 py-3 text-lg font-semibold rounded-xl transition-all duration-300 bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 shadow-lg transform hover:scale-105">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                         </svg>
-                    </div>
-                    
-                    <!-- Content -->
-                    <div class="relative z-10 flex flex-col justify-center items-center text-white p-12 text-center">
-                        <div class="mb-8">
-                            <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mb-6 backdrop-blur-sm">
-                                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                            </div>
-                            <h2 class="text-3xl font-bold mb-4">Welcome to Tour Sphere</h2>
-                            <p class="text-blue-100 text-lg">Discover the beauty of Nepal with our expert guides</p>
-                        </div>
-                        
-                        <!-- Features -->
-                        <div class="space-y-4 text-left">
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mr-3">
-                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <span class="text-blue-100">Expert Local Guides</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mr-3">
-                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <span class="text-blue-100">Customized Itineraries</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center mr-3">
-                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                </div>
-                                <span class="text-blue-100">24/7 Support</span>
-                            </div>
-                        </div>
-                    </div>
+                        <span id="toggleText">Register</span>
+                    </button>
+                    <p class="mt-3 text-sm text-gray-600" id="toggleSubtext">Create your account to get started</p>
                 </div>
 
-                <!-- Right Side - Forms -->
-                <div class="w-full lg:w-1/2 p-8 lg:p-12">
-                    <!-- Toggle Buttons -->
-                    <div class="flex mb-8 bg-gray-100 rounded-2xl p-1">
-                        <button id="signupTab" 
-                                class="flex-1 py-3 px-6 rounded-xl font-medium text-gray-700 bg-white shadow-sm transition-all duration-300 transform hover:scale-105 active-tab">
-                            Sign Up
-                        </button>
-                        <button id="loginTab" 
-                                class="flex-1 py-3 px-6 rounded-xl font-medium text-gray-500 transition-all duration-300 transform hover:scale-105">
-                            If you have an account, Sign In
-                        </button>
-                    </div>
-
                     <!-- Login Form -->
-                    <div id="loginForm" class="space-y-6 hidden">
-                        <div class="text-center mb-8">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-2">Welcome Back</h2>
-                            <p class="text-gray-600">Sign in to your Tour Sphere account</p>
+                    <div id="loginForm" class="space-y-8 hidden form-container">
+                        <!-- Form Header with Elegant Design -->
+                        <div class="text-center mb-10">
+                            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-2xl mb-4 shadow-lg">
+                                <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl font-bold text-gray-900 mb-3">Welcome Back</h2>
+                            <p class="text-lg text-gray-600 font-medium">Sign in to your Tour Sphere account</p>
+                            <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mx-auto mt-4"></div>
+                        </div>
+                            
+                            <!-- Success Message -->
+                            @if(session('success'))
+                                <div class="mt-4 bg-green-50 border border-green-200 rounded-lg p-4">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <svg class="h-5 w-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class="text-sm font-medium text-green-800">{{ session('success') }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <!-- Error Messages -->
+                            @if($errors->any())
+                                <div class="mt-4 bg-red-50 border border-red-200 rounded-lg p-4">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="ml-3">
+                                            <div class="text-sm text-red-800">
+                                                @foreach($errors->all() as $error)
+                                                    <p>{{ $error }}</p>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
 
-                        <form action="{{ route('login') }}" method="POST" class="space-y-6">
+                        <form action="{{ route('login.post') }}" method="POST" class="space-y-6">
                             @csrf
                             
                             <!-- Email Field -->
-                            <div>
-                                <label for="loginEmail" class="block text-sm font-medium text-gray-700 mb-2">
+                            <div class="form-group">
+                                <label for="loginEmail" class="block text-sm font-semibold text-gray-700 mb-3">
                                     Email Address
                                 </label>
-                                <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="relative group">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                        <svg class="h-5 w-5 text-purple-400 group-focus-within:text-purple-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
                                         </svg>
                                     </div>
                                     <input id="loginEmail" name="email" type="email" required 
-                                           class="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                           class="appearance-none relative block w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 bg-white/80 backdrop-blur-sm"
                                            placeholder="Enter your email address"
                                            value="{{ old('email') }}">
                                 </div>
                                 @error('email')
-                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    <p class="mt-2 text-sm text-red-500 font-medium">{{ $message }}</p>
                                 @enderror
                             </div>
 
                             <!-- Password Field -->
-                            <div>
-                                <label for="loginPassword" class="block text-sm font-medium text-gray-700 mb-2">
+                            <div class="form-group">
+                                <label for="loginPassword" class="block text-sm font-semibold text-gray-700 mb-3">
                                     Password
                                 </label>
-                                <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="relative group">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                        <svg class="h-5 w-5 text-purple-400 group-focus-within:text-purple-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                                         </svg>
                                     </div>
                                     <input id="loginPassword" name="password" type="password" required 
-                                           class="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                                           class="appearance-none relative block w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-4 focus:ring-purple-500/20 focus:border-purple-500 transition-all duration-300 bg-white/80 backdrop-blur-sm"
                                            placeholder="Enter your password">
                                 </div>
                                 @error('password')
-                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    <p class="mt-2 text-sm text-red-500 font-medium">{{ $message }}</p>
                                 @enderror
                             </div>
 
@@ -150,13 +136,13 @@
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
                                     <input id="remember_me" name="remember" type="checkbox" 
-                                           class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                           class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
                                     <label for="remember_me" class="ml-2 block text-sm text-gray-700">
                                         Remember me
                                     </label>
                                 </div>
                                 <div class="text-sm">
-                                    <a href="#" class="font-medium text-blue-600 hover:text-blue-500 transition-colors">
+                                    <a href="#" class="font-medium text-purple-600 hover:text-purple-500 transition-colors">
                                         Forgot password?
                                     </a>
                                 </div>
@@ -164,7 +150,7 @@
 
                             <!-- Submit Button -->
                             <button type="submit" 
-                                    class="w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                    class="w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-300 transform hover:scale-105 shadow-lg">
                                 Sign In
                             </button>
                         </form>
@@ -201,13 +187,20 @@
                     </div>
 
                     <!-- Signup Form -->
-                    <div id="signupForm" class="space-y-6">
-                        <div class="text-center mb-8">
-                            <h2 class="text-2xl font-bold text-gray-900 mb-2">Join Tour Sphere</h2>
-                            <p class="text-gray-600">Create your account and start your adventure</p>
+                    <div id="signupForm" class="space-y-8 form-container">
+                        <!-- Form Header with Elegant Design -->
+                        <div class="text-center mb-10">
+                            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-2xl mb-4 shadow-lg">
+                                <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl font-bold text-gray-900 mb-3">Join Tour Sphere</h2>
+                            <p class="text-lg text-gray-600 font-medium">Create your account and start your adventure</p>
+                            <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mx-auto mt-4"></div>
                         </div>
 
-                        <form action="{{ route('signup') }}" method="POST" class="space-y-6">
+                        <form action="{{ route('register.post') }}" method="POST" class="space-y-6">
                             @csrf
                             
                             <!-- Full Name Field -->
@@ -222,7 +215,7 @@
                                         </svg>
                                     </div>
                                     <input id="signupName" name="name" type="text" required 
-                                           class="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                                           class="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
                                            placeholder="Enter your full name"
                                            value="{{ old('name') }}">
                                 </div>
@@ -243,7 +236,7 @@
                                         </svg>
                                     </div>
                                     <input id="signupEmail" name="email" type="email" required 
-                                           class="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                                           class="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
                                            placeholder="Enter your email address"
                                            value="{{ old('email') }}">
                                 </div>
@@ -264,7 +257,7 @@
                                         </svg>
                                     </div>
                                     <input id="signupPhone" name="phone" type="tel" required 
-                                           class="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                                           class="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
                                            placeholder="Enter your phone number"
                                            value="{{ old('phone') }}">
                                 </div>
@@ -285,7 +278,7 @@
                                         </svg>
                                     </div>
                                     <input id="signupPassword" name="password" type="password" required 
-                                           class="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                                           class="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
                                            placeholder="Create a strong password">
                                 </div>
                                 @error('password')
@@ -305,7 +298,7 @@
                                         </svg>
                                     </div>
                                     <input id="signupPasswordConfirmation" name="password_confirmation" type="password" required 
-                                           class="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                                           class="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
                                            placeholder="Confirm your password">
                                 </div>
                             </div>
@@ -313,18 +306,18 @@
                             <!-- Terms and Conditions -->
                             <div class="flex items-center">
                                 <input id="terms" name="terms" type="checkbox" required 
-                                       class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                                       class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
                                 <label for="terms" class="ml-2 block text-sm text-gray-700">
                                     I agree to the 
-                                    <a href="#" class="text-green-600 hover:text-green-500">Terms of Service</a> and 
-                                    <a href="#" class="text-green-600 hover:text-green-500">Privacy Policy</a>
+                                    <a href="#" class="text-purple-600 hover:text-purple-500">Terms of Service</a> and 
+                                    <a href="#" class="text-purple-600 hover:text-purple-500">Privacy Policy</a>
                                 </label>
                             </div>
 
                             <!-- Newsletter Subscription -->
                             <div class="flex items-center">
                                 <input id="newsletter" name="newsletter" type="checkbox" 
-                                       class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                                       class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
                                 <label for="newsletter" class="ml-2 block text-sm text-gray-700">
                                     Subscribe to our newsletter for travel updates and special offers
                                 </label>
@@ -332,7 +325,7 @@
 
                             <!-- Submit Button -->
                             <button type="submit" 
-                                    class="w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                    class="w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-300 transform hover:scale-105 shadow-lg">
                                 Create Account
                             </button>
                         </form>
@@ -367,7 +360,6 @@
                             </button>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
@@ -376,51 +368,88 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const loginTab = document.getElementById('loginTab');
-    const signupTab = document.getElementById('signupTab');
+    const toggleAuth = document.getElementById('toggleAuth');
+    const toggleText = document.getElementById('toggleText');
+    const toggleSubtext = document.getElementById('toggleSubtext');
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
+    
+    let isLoginMode = false;
 
-    // Function to switch to login
-    function showLogin() {
-        loginTab.classList.add('active-tab', 'bg-white', 'text-gray-700', 'shadow-sm');
-        loginTab.classList.remove('text-gray-500');
-        signupTab.classList.remove('active-tab', 'bg-white', 'text-gray-700', 'shadow-sm');
-        signupTab.classList.add('text-gray-500');
+    // Function to toggle between login and signup with elegant animations
+    function toggleAuthMode() {
+        isLoginMode = !isLoginMode;
         
-        loginForm.classList.remove('hidden');
-        signupForm.classList.add('hidden');
-        
-        // Add slide animation
-        loginForm.style.animation = 'slideInLeft 0.5s ease-out';
-        setTimeout(() => {
-            loginForm.style.animation = '';
-        }, 500);
+        if (isLoginMode) {
+            // Switch to Login with elegant transition
+            toggleText.textContent = 'Login';
+            toggleSubtext.textContent = 'Already have an account? Sign in here';
+            
+            // Add exit animation to current form
+            signupForm.style.animation = 'slideOutToRight 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            setTimeout(() => {
+                signupForm.classList.add('hidden');
+                loginForm.classList.remove('hidden');
+                
+                // Add elegant entrance animation
+                loginForm.style.animation = 'slideInFromLeft 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                // Add stagger animation to form elements
+                const formElements = loginForm.querySelectorAll('.form-group, .space-y-6 > div');
+                formElements.forEach((element, index) => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        element.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, 200 + (index * 100));
+                });
+                
+                setTimeout(() => {
+                    loginForm.style.animation = '';
+                }, 700);
+            }, 400);
+        } else {
+            // Switch to Signup with elegant transition
+            toggleText.textContent = 'Register';
+            toggleSubtext.textContent = 'Create your account to get started';
+            
+            // Add exit animation to current form
+            loginForm.style.animation = 'slideOutToLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            
+            setTimeout(() => {
+                loginForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+                
+                // Add elegant entrance animation
+                signupForm.style.animation = 'slideInFromRight 0.7s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                // Add stagger animation to form elements
+                const formElements = signupForm.querySelectorAll('.form-group, .space-y-6 > div');
+                formElements.forEach((element, index) => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        element.style.transition = 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, 200 + (index * 100));
+                });
+                
+                setTimeout(() => {
+                    signupForm.style.animation = '';
+                }, 700);
+            }, 400);
+        }
     }
 
-    // Function to switch to signup
-    function showSignup() {
-        signupTab.classList.add('active-tab', 'bg-white', 'text-gray-700', 'shadow-sm');
-        signupTab.classList.remove('text-gray-500');
-        loginTab.classList.remove('active-tab', 'bg-white', 'text-gray-700', 'shadow-sm');
-        loginTab.classList.add('text-gray-500');
-        
-        signupForm.classList.remove('hidden');
-        loginForm.classList.add('hidden');
-        
-        // Add slide animation
-        signupForm.style.animation = 'slideInRight 0.5s ease-out';
-        setTimeout(() => {
-            signupForm.style.animation = '';
-        }, 500);
-    }
-
-    // Event listeners
-    loginTab.addEventListener('click', showLogin);
-    signupTab.addEventListener('click', showSignup);
+    // Event listener for toggle button
+    toggleAuth.addEventListener('click', toggleAuthMode);
 
     // Initialize with signup form visible
-    showSignup();
+    toggleAuthMode();
 });
 </script>
 
@@ -508,28 +537,185 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 }
 
-/* Form Animation Styles */
-@keyframes slideInLeft {
-    from {
+/* Professional Form Animation Styles */
+@keyframes slideInFromLeft {
+    0% {
         opacity: 0;
-        transform: translateX(-30px);
+        transform: translateX(-80px) scale(0.9) rotateY(-15deg);
     }
-    to {
+    50% {
+        opacity: 0.8;
+        transform: translateX(-20px) scale(0.95) rotateY(-5deg);
+    }
+    100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(0) scale(1) rotateY(0deg);
     }
 }
 
-@keyframes slideInRight {
-    from {
+@keyframes slideInFromRight {
+    0% {
         opacity: 0;
-        transform: translateX(30px);
+        transform: translateX(80px) scale(0.9) rotateY(15deg);
     }
-    to {
+    50% {
+        opacity: 0.8;
+        transform: translateX(20px) scale(0.95) rotateY(5deg);
+    }
+    100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(0) scale(1) rotateY(0deg);
     }
 }
+
+@keyframes slideOutToLeft {
+    0% {
+        opacity: 1;
+        transform: translateX(0) scale(1) rotateY(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-80px) scale(0.9) rotateY(-15deg);
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0) scale(1) rotateY(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(80px) scale(0.9) rotateY(15deg);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Professional Form Container Styling */
+.form-container {
+    position: relative;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+}
+
+/* Enhanced Input Styling */
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"],
+.form-container input[type="tel"] {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(139, 92, 246, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-container input:focus {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 
+        0 0 0 4px rgba(139, 92, 246, 0.1),
+        0 4px 20px rgba(139, 92, 246, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Professional Button Enhancements */
+.form-container button[type="submit"] {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+    box-shadow: 
+        0 10px 25px rgba(139, 92, 246, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-container button[type="submit"]:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 15px 35px rgba(139, 92, 246, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.form-container button[type="submit"]:active {
+    transform: translateY(-1px) scale(1.01);
+}
+
+/* Elegant Toggle Button Enhancements */
+#toggleAuth {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+    box-shadow: 
+        0 15px 35px rgba(139, 92, 246, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#toggleAuth:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 
+        0 20px 40px rgba(139, 92, 246, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+#toggleAuth:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* Stagger Animation for Form Elements */
+.form-container .space-y-6 > div,
+.form-container .space-y-8 > div {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.form-container .space-y-6 > div:nth-child(1) { animation-delay: 0.1s; }
+.form-container .space-y-6 > div:nth-child(2) { animation-delay: 0.2s; }
+.form-container .space-y-6 > div:nth-child(3) { animation-delay: 0.3s; }
+.form-container .space-y-6 > div:nth-child(4) { animation-delay: 0.4s; }
+.form-container .space-y-6 > div:nth-child(5) { animation-delay: 0.5s; }
+.form-container .space-y-6 > div:nth-child(6) { animation-delay: 0.6s; }
 
 .active-tab {
     background: white;

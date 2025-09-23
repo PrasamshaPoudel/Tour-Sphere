@@ -118,7 +118,7 @@
                                 class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             View Details
                         </button>
-                        <a href="{{ route('booking') }}?tour=romantic-{{ strtolower(str_replace(' ', '-', $package['name'])) }}&category=romantic" 
+                        <a href="{{ route('booking.form') }}?tour=romantic-{{ strtolower(str_replace(' ', '-', $package['name'])) }}&category=romantic" 
                            class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             Book Now
                         </a>
@@ -198,7 +198,7 @@
             Book your romantic experience today and create magical moments that will strengthen your bond in Nepal's most beautiful settings.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('booking') }}?category=romantic" 
+            <a href="{{ route('booking.form') }}?category=romantic" 
                class="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Book Now
             </a>
@@ -225,3 +225,9 @@ function toggleDetails(id) {
 }
 </script>
 @endsection
+
+
+
+
+
+

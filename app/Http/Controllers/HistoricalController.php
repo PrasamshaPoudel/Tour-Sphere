@@ -3,130 +3,85 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\WeatherService;
+use App\Services\DestinationService;
 
 class HistoricalController extends Controller
 {
-    public function index()
+    public function index(WeatherService $weatherService)
     {
-        $experiences = [
-            [
-                'name' => 'Kathmandu Durbar Square Heritage Walk',
-                'location' => 'Kathmandu, Nepal',
-                'type' => 'Royal Palace Complex',
-                'duration' => '1-2 days',
-                'best_season' => 'Year round',
-                'cost' => 'Rs 5,000 - Rs 12,000',
-                'description' => 'Explore the ancient royal palace complex with intricate wood carvings, courtyards, and temples dating back to the 12th century.',
-                'highlights' => [
-                    'UNESCO World Heritage Site',
-                    'Ancient Newari architecture',
-                    'Hanuman Dhoka Palace Museum',
-                    'Living Goddess Kumari\'s residence',
-                    'Traditional wood and stone carvings'
-                ],
-                'itinerary' => [
-                    'Morning: Guided tour of palace courtyards',
-                    'Midday: Museum visits and historical exhibitions',
-                    'Afternoon: Traditional architecture workshop',
-                    'Evening: Cultural performance in historical setting'
-                ],
-                'things_to_carry' => [
-                    'Comfortable walking shoes',
-                    'Camera for architecture photography',
-                    'Hat and sunscreen',
-                    'Water bottle',
-                    'Notebook for historical facts',
-                    'Cash for entrance fees',
-                    'Respectful clothing for cultural sites'
-                ],
-                'image' => 'bhaktapur.jpg',
-                'weather' => [
-                    'temperature' => 24,
-                    'description' => 'Pleasant',
-                    'humidity' => 65,
-                    'wind_speed' => 2.0,
-                    'icon' => '02d'
-                ]
-            ],
-            [
-                'name' => 'Ancient Ruins Archaeological Tour',
-                'location' => 'Tilaurakot, Nepal',
-                'type' => 'Archaeological Site',
-                'duration' => '2-3 days',
-                'best_season' => 'October-March',
-                'cost' => 'Rs 18,000 - Rs 35,000',
-                'description' => 'Discover ancient Buddhist and Hindu ruins, archaeological excavations, and learn about Nepal\'s rich prehistoric and historical heritage.',
-                'highlights' => [
-                    'Ancient Kapilvastu ruins',
-                    'Archaeological excavation sites',
-                    'Buddhist monasteries ruins',
-                    'Ancient city planning systems',
-                    'Historical artifact discoveries'
-                ],
-                'itinerary' => [
-                    'Day 1: Travel and visit Tilaurakot ruins',
-                    'Day 2: Archaeological site exploration with expert guide',
-                    'Day 3: Museum visits and historical documentation'
-                ],
-                'things_to_carry' => [
-                    'Sturdy walking shoes',
-                    'Hat and sun protection',
-                    'Camera with extra batteries',
-                    'Notebook for archaeological notes',
-                    'Water and snacks',
-                    'Magnifying glass for artifacts',
-                    'Comfortable outdoor clothing'
-                ],
-                'image' => 'ruins.jpg',
-                'weather' => [
-                    'temperature' => 27,
-                    'description' => 'Warm and dry',
-                    'humidity' => 55,
-                    'wind_speed' => 3.0,
-                    'icon' => '01d'
-                ]
-            ],
-            [
-                'name' => 'National Museum Heritage Experience',
-                'location' => 'Chhauni, Kathmandu',
-                'type' => 'Museum & Gallery',
-                'duration' => '1 day',
-                'best_season' => 'Year round',
-                'cost' => 'Rs 2,000 - Rs 5,000',
-                'description' => 'Explore Nepal\'s largest museum showcasing historical artifacts, traditional weapons, cultural items, and archaeological treasures.',
-                'highlights' => [
-                    'Ancient artifacts and sculptures',
-                    'Traditional weapons and armor',
-                    'Historical manuscripts and coins',
-                    'Cultural and religious exhibits',
-                    'Educational guided tours'
-                ],
-                'itinerary' => [
-                    'Morning: Museum orientation and historical overview',
-                    'Midday: Detailed exploration of artifact collections',
-                    'Afternoon: Special exhibitions and cultural workshops'
-                ],
-                'things_to_carry' => [
-                    'Comfortable indoor shoes',
-                    'Camera (where permitted)',
-                    'Notebook for museum notes',
-                    'Small bag for personal items',
-                    'Interest in history and culture',
-                    'Cash for museum entry and souvenirs',
-                    'Reading glasses if needed'
-                ],
-                'image' => 'museum.jpg',
-                'weather' => [
-                    'temperature' => 22,
-                    'description' => 'Mild indoor climate',
-                    'humidity' => 60,
-                    'wind_speed' => 0.5,
-                    'icon' => '02d'
-                ]
-            ]
-        ];
+        // Get historical destinations from DestinationService
+        $historicalData = DestinationService::getDestinationsByCategory('historical');
+        
+        // Get weather data for each destination
+        $destinationsWithWeather = [];
+        $destinations = $historicalData['destinations'] ?? [];
+        foreach ($destinations as $destination) {
+            $city = $destination['location'] ?? 'Kathmandu'; // Default to Kathmandu if location not specified
+            
+            // Extract city name from location string (e.g., "Gorkha, Nepal" -> "Gorkha")
+            if (strpos($city, ',') !== false) {
+                $city = trim(explode(',', $city)[0]);
+            }
+            
+            try {
+                $weatherResponse = $weatherService->getCurrentByCity($city);
+                
+                // Initialize weather as null by default
+                $destination['weather'] = null;
+                
+                if ($weatherResponse['ok'] && isset($weatherResponse['data'])) {
+                    $weatherData = $weatherResponse['data'];
+                    
+                    // Safely check and extract weather data
+                    if (is_array($weatherData) && 
+                        isset($weatherData['main']) && 
+                        is_array($weatherData['main']) && 
+                        isset($weatherData['main']['temp']) && 
+                        isset($weatherData['weather']) && 
+                        is_array($weatherData['weather']) && 
+                        count($weatherData['weather']) > 0) {
+                        
+                        $weatherItem = $weatherData['weather'][0];
+                        
+                        // Double check that weather item is an array
+                        if (is_array($weatherItem)) {
+                            $destination['weather'] = [
+                                'temperature' => round($weatherData['main']['temp']),
+                                'description' => ucfirst($weatherItem['description'] ?? 'Unknown'),
+                                'icon' => $this->getWeatherIcon($weatherItem['icon'] ?? '01d')
+                            ];
+                        }
+                    }
+                }
+            } catch (\Exception $e) {
+                $destination['weather'] = null;
+            }
+            
+            $destinationsWithWeather[] = $destination;
+        }
+        
+        return view('pages.historical', [
+            'historicalData' => $destinationsWithWeather,
+            'pageTitle' => 'Historical Sites in Nepal',
+            'metaDescription' => 'Explore Nepal\'s rich historical heritage and ancient monuments through our guided historical tours.'
+        ]);
+    }
 
-        return view('pages.historical-details', compact('experiences'));
+    private function getWeatherIcon($iconCode)
+    {
+        $iconMap = [
+            '01d' => '☀️', '01n' => '🌙',
+            '02d' => '⛅', '02n' => '☁️',
+            '03d' => '☁️', '03n' => '☁️',
+            '04d' => '☁️', '04n' => '☁️',
+            '09d' => '🌧️', '09n' => '🌧️',
+            '10d' => '🌦️', '10n' => '🌧️',
+            '11d' => '⛈️', '11n' => '⛈️',
+            '13d' => '❄️', '13n' => '❄️',
+            '50d' => '🌫️', '50n' => '🌫️'
+        ];
+        
+        return $iconMap[$iconCode] ?? '🌤️';
     }
 }
-

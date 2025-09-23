@@ -103,7 +103,7 @@
         </div>
     </section>
 
-    {{-- 📝 Online Booking Form --}}
+    {{-- 📝 Adventure Booking Form --}}
     <section id="online-booking" class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
@@ -111,9 +111,17 @@
                     Book <span class="text-blue-600">Online</span>
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Fill out the form below to secure your adventure
+                    Choose your destination and secure your adventure
                 </p>
             </div>
+
+            {{-- Adventure Booking Form Component --}}
+            <x-adventure-booking-form 
+                :destinations="$destinations ?? []" 
+                :category="$category ?? 'Trekking'"
+                :priceRange="$priceRange ?? '15000 - 25000'"
+                :selectedDestination="$selectedDestination ?? null"
+            />
 
             {{-- Success/Error Messages --}}
             @if(session('success'))
@@ -156,142 +164,6 @@
                     </div>
                 </div>
             @endif
-
-            <div class="max-w-4xl mx-auto">
-                <form action="{{ route('booking.store') }}" method="POST" class="bg-white rounded-3xl shadow-2xl p-10">
-                    @csrf
-                    
-                    <div class="grid md:grid-cols-2 gap-8 mb-8">
-                        {{-- Tour Category --}}
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">Tour Category *</label>
-                            <select name="tour_category" required class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                                <option value="">Select Category</option>
-                                @foreach($tourCategories ?? [] as $key => $category)
-                                    <option value="{{ $key }}" {{ old('tour_category', $selectedCategory) == $key ? 'selected' : '' }}>
-                                        {{ $category }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        {{-- Specific Tour --}}
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">Specific Tour *</label>
-                            <select name="tour_id" required class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                                <option value="">Select Tour</option>
-                                @foreach($popularTours ?? [] as $key => $tour)
-                                    <option value="{{ $key }}" {{ old('tour_id', $selectedTour) == $key ? 'selected' : '' }}>
-                                        {{ $tour }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-8 mb-8">
-                        {{-- Number of People --}}
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">Number of People *</label>
-                            <input type="number" name="people" min="1" max="20" value="{{ old('people', 1) }}" required 
-                                   class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                        </div>
-
-                        {{-- Travel Date --}}
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">Preferred Travel Date *</label>
-                            <input type="date" name="travel_date" required min="{{ date('Y-m-d') }}" value="{{ old('travel_date') }}"
-                                   class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                        </div>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-8 mb-8">
-                        {{-- Duration --}}
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">Tour Duration</label>
-                            <select name="duration" class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                                <option value="">Select Duration</option>
-                                <option value="1-3" {{ old('duration') == '1-3' ? 'selected' : '' }}>1-3 Days</option>
-                                <option value="4-7" {{ old('duration') == '4-7' ? 'selected' : '' }}>4-7 Days</option>
-                                <option value="8-14" {{ old('duration') == '8-14' ? 'selected' : '' }}>8-14 Days</option>
-                                <option value="15+" {{ old('duration') == '15+' ? 'selected' : '' }}>15+ Days</option>
-                            </select>
-                        </div>
-
-                        {{-- Budget Range --}}
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">Budget Range</label>
-                            <select name="budget" class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors">
-                                <option value="">Select Budget</option>
-                                <option value="budget" {{ old('budget') == 'budget' ? 'selected' : '' }}>Budget (Rs10000-Rs50000)</option>
-                                <option value="mid-range" {{ old('budget') == 'mid-range' ? 'selected' : '' }}>Mid-Range (Rs60000-Rs100000)</option>
-                                <option value="luxury" {{ old('budget') == 'luxury' ? 'selected' : '' }}>Luxury (Rs100000+)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-8 mb-8">
-                        {{-- First Name --}}
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">First Name *</label>
-                            <input type="text" name="first_name" required value="{{ old('first_name') }}"
-                                   class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                                   placeholder="Your first name">
-                        </div>
-
-                        {{-- Last Name --}}
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">Last Name *</label>
-                            <input type="text" name="last_name" required value="{{ old('last_name') }}"
-                                   class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                                   placeholder="Your last name">
-                        </div>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-8 mb-8">
-                        {{-- Email --}}
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">Email Address *</label>
-                            <input type="email" name="email" required value="{{ old('email') }}"
-                                   class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                                   placeholder="your.email@example.com">
-                        </div>
-
-                        {{-- Phone --}}
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-3">Phone Number *</label>
-                            <input type="tel" name="phone" required value="{{ old('phone') }}"
-                                   class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                                   placeholder="+1 (555) 123-4567">
-                        </div>
-                    </div>
-
-                    {{-- Special Requests --}}
-                    <div class="mb-8">
-                        <label class="block text-sm font-medium text-gray-700 mb-3">Special Requests & Notes</label>
-                        <textarea name="special_requests" rows="4" 
-                                  class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                                  placeholder="Tell us about any special requirements, dietary restrictions, or specific experiences you'd like...">{{ old('special_requests') }}</textarea>
-                    </div>
-
-                    {{-- Terms & Conditions --}}
-                    <div class="mb-8">
-                        <label class="flex items-center">
-                            <input type="checkbox" name="terms_accepted" required class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                            <span class="ml-3 text-sm text-gray-700">
-                                I agree to the <a href="#" class="text-blue-600 hover:underline">Terms & Conditions</a> and 
-                                <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a> *
-                            </span>
-                        </label>
-                    </div>
-
-                    {{-- Submit Button --}}
-                    <button type="submit" 
-                            class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg">
-                        Confirm Booking & Proceed to Payment
-                    </button>
-                </form>
-            </div>
         </div>
     </section>
 
@@ -338,7 +210,7 @@
             <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-8 text-center">
                     <h3 class="text-2xl font-bold mb-4 text-blue-600">Budget Tours</h3>
-                    <div class="text-4xl font-bold mb-2">Rs10000</div>
+                    <div class="text-4xl font-bold mb-2">Rs 10,000</div>
                     <div class="text-gray-600 mb-4">Starting from</div>
                     <ul class="text-left space-y-2 text-gray-700">
                         <li>✓ Basic accommodation</li>
@@ -350,7 +222,7 @@
 
                 <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-3xl p-8 text-center border-4 border-green-200">
                     <h3 class="text-2xl font-bold mb-4 text-green-600">Mid-Range Tours</h3>
-                    <div class="text-4xl font-bold mb-2">Rs50000</div>
+                    <div class="text-4xl font-bold mb-2">Rs 50,000</div>
                     <div class="text-gray-600 mb-4">Starting from</div>
                     <ul class="text-left space-y-2 text-gray-700">
                         <li>✓ Comfortable hotels</li>
@@ -363,7 +235,7 @@
 
                 <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 text-center">
                     <h3 class="text-2xl font-bold mb-4 text-purple-600">Luxury Tours</h3>
-                    <div class="text-4xl font-bold mb-2">Rs100000</div>
+                    <div class="text-4xl font-bold mb-2">Rs 100,000</div>
                     <div class="text-gray-600 mb-4">Starting from</div>
                     <ul class="text-left space-y-2 text-gray-700">
                         <li>✓ Premium accommodation</li>
@@ -379,86 +251,3 @@
     </section>
 @endsection
 
-@push('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const categorySelect = document.querySelector('select[name="tour_category"]');
-    const tourSelect = document.querySelector('select[name="tour_id"]');
-    
-    // Tour data organized by category
-    const toursByCategory = {
-        'adventure': {
-            'everest-base-camp': 'Everest Base Camp Trek',
-            'annapurna-circuit': 'Annapurna Circuit Trek',
-            'pokhara-paragliding': 'Pokhara Paragliding',
-            'rafting-trishuli': 'Trishuli River Rafting',
-            'bungee-jump': 'Bungee Jumping',
-            'mountain-biking': 'Mountain Biking'
-        },
-        'cultural': {
-            'bhaktapur-heritage': 'Bhaktapur Heritage Tour',
-            'kathmandu-durbar': 'Kathmandu Durbar Square',
-            'patan-museum': 'Patan Museum Tour',
-            'newari-cuisine': 'Newari Cuisine Experience',
-            'festival-tour': 'Festival Celebration Tour'
-        },
-        'spiritual': {
-            'lumbini-pilgrimage': 'Lumbini Pilgrimage Tour',
-            'pashupatinath-temple': 'Pashupatinath Temple',
-            'muktinath-temple': 'Muktinath Temple',
-            'meditation-retreat': 'Meditation Retreat',
-            'monastery-stay': 'Monastery Stay Experience'
-        },
-        'nature': {
-            'chitwan-safari': 'Chitwan Wildlife Safari',
-            'rara-lake': 'Rara Lake Trek',
-            'pokhara-lakes': 'Pokhara Lakes Tour',
-            'bird-watching': 'Bird Watching Tour',
-            'botanical-gardens': 'Botanical Gardens'
-        },
-        'historical': {
-            'bhaktapur-ancient': 'Bhaktapur Ancient City',
-            'patan-heritage': 'Patan Heritage Walk',
-            'kathmandu-old': 'Old Kathmandu Tour',
-            'gorkha-palace': 'Gorkha Palace Tour',
-            'archaeological-sites': 'Archaeological Sites'
-        },
-        'honeymoon': {
-            'romantic-pokhara': 'Romantic Pokhara Retreat',
-            'kathmandu-valley-romance': 'Kathmandu Valley Romance',
-            'mountain-honeymoon-escape': 'Mountain Honeymoon Escape'
-        },
-        'family': {
-            'family-adventure-chitwan': 'Family Adventure in Chitwan',
-            'pokhara-family-fun': 'Pokhara Family Fun',
-            'kathmandu-family-heritage': 'Kathmandu Family Heritage'
-        },
-        'romantic': {
-            'candlelight-dinner-experience': 'Candlelight Dinner Experience',
-            'mountain-romance-package': 'Mountain Romance Package',
-            'heritage-romance-tour': 'Heritage Romance Tour'
-        },
-        'luxury': {
-            'luxury-himalayan-retreat': 'Luxury Himalayan Retreat',
-            'royal-heritage-experience': 'Royal Heritage Experience',
-            'exclusive-wildlife-safari': 'Exclusive Wildlife Safari'
-        }
-    };
-    
-    // Update tour options when category changes
-    categorySelect.addEventListener('change', function() {
-        const selectedCategory = this.value;
-        tourSelect.innerHTML = '<option value="">Select Tour</option>';
-        
-        if (selectedCategory && toursByCategory[selectedCategory]) {
-            Object.entries(toursByCategory[selectedCategory]).forEach(([value, text]) => {
-                const option = document.createElement('option');
-                option.value = value;
-                option.textContent = text;
-                tourSelect.appendChild(option);
-            });
-        }
-    });
-});
-</script>
-@endpush

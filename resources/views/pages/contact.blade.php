@@ -233,7 +233,7 @@
                    class="bg-white text-blue-600 font-bold px-8 py-4 rounded-full text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-xl">
                     Explore Tours
                 </a>
-                <a href="{{ route('booking') }}" 
+                <a href="{{ route('booking.form') }}" 
                    class="bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-full text-lg hover:bg-white hover:text-blue-600 transition-all duration-300">
                     Book Now
                 </a>

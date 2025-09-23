@@ -109,7 +109,7 @@
                                 class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             View Details
                         </button>
-                        <a href="{{ route('booking') }}?tour=culture-{{ strtolower(str_replace(' ', '-', $experience['name'])) }}&category=culture" 
+                        <a href="{{ route('booking.form') }}?tour=culture-{{ strtolower(str_replace(' ', '-', $experience['name'])) }}&category=culture" 
                            class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                             Book Now
                         </a>
@@ -189,7 +189,7 @@
             Book your cultural experience today and immerse yourself in the rich traditions of Nepal.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('booking') }}?category=culture" 
+            <a href="{{ route('booking.form') }}?category=culture" 
                class="bg-white text-orange-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                 Book Now
             </a>
@@ -216,6 +216,24 @@ function toggleDetails(id) {
 }
 </script>
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

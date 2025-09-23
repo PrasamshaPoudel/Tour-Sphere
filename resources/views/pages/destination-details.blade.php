@@ -3,6 +3,57 @@
 @section('title', $pkg['name'] . ' Package')
 
 @section('content')
+<style>
+.weather-widget {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border-radius: 12px;
+  padding: 16px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.weather-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.weather-info {
+  flex: 1;
+}
+
+.weather-location {
+  font-size: 12px;
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+
+.weather-temp {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.weather-status {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 2px;
+}
+
+.weather-feels {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.weather-details {
+  text-align: right;
+  font-size: 12px;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+</style>
 <!-- Hero Section -->
 <section class="relative h-96 bg-gradient-to-r from-green-900 to-green-700 text-white">
     <div class="absolute inset-0 bg-black opacity-40"></div>
@@ -44,16 +95,33 @@
                 </div>
                 <p class="text-gray-600 mb-6 leading-relaxed">{{ $pkg['overview'] }}</p>
 
+                <!-- Weather Widget -->
+                <div class="weather-widget mb-6">
+                    <div class="weather-icon">☀️</div>
+                    <div class="weather-info">
+                        <div class="weather-location">Current Weather - {{ $pkg['name'] }}</div>
+                        <div class="weather-temp">22°C</div>
+                        <div class="weather-status">Clear Sky</div>
+                        <div class="weather-feels">Feels like 24°C</div>
+                    </div>
+                    <div class="weather-details">
+                        <div>Humidity: 65%</div>
+                        <div>Wind: 3.2 m/s</div>
+                    </div>
+                </div>
+
                 <!-- Action Buttons -->
                 <div class="flex gap-4">
                     <button onclick="toggleDetails('itinerary')" 
                             class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
                         View Details
                     </button>
-                    <a href="{{ route('booking') }}?tour={{ $slug }}&category=trekking" 
-                       class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                    <button class="book-now-btn bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors" 
+                            data-id="{{ $pkg['id'] ?? 1 }}" 
+                            data-title="{{ $pkg['name'] }}" 
+                            data-price="{{ str_replace(['Rs ', ','], '', $pkg['price']) }}">
                         Book Now
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -142,10 +210,12 @@
             Book your trek today and immerse yourself in Nepal’s majestic landscapes and culture.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{{ route('booking') }}?tour={{ $slug }}&category=trekking" 
-               class="bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            <button class="book-now-btn bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors" 
+                    data-id="{{ $pkg['id'] ?? 1 }}" 
+                    data-title="{{ $pkg['name'] }}" 
+                    data-price="{{ str_replace(['Rs ', ','], '', $pkg['price']) }}">
                 Book Now
-            </a>
+            </button>
             <a href="{{ route('contact') }}" 
                class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition-colors">
                 Contact Us
@@ -166,6 +236,52 @@ function toggleDetails(index) {
         details.classList.add('hidden');
         button.textContent = 'View Details';
     }
+}
+
+// Handle Book Now button clicks
+document.addEventListener('DOMContentLoaded', function() {
+    const bookButtons = document.querySelectorAll('.book-now-btn');
+    
+    bookButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const destinationId = this.getAttribute('data-id');
+            const destinationTitle = this.getAttribute('data-title');
+            const price = this.getAttribute('data-price');
+            
+            // Check if user is logged in
+            const isLoggedIn = {{ auth()->check() ? 'true' : 'false' }};
+            
+            if (isLoggedIn) {
+                // User is logged in, redirect to booking form with data
+                const bookingUrl = "{{ route('booking.form') }}?destination_id=" + destinationId + 
+                                 "&destination_title=" + encodeURIComponent(destinationTitle) + 
+                                 "&price=" + price;
+                window.location.href = bookingUrl;
+            } else {
+                // User is not logged in, save pending booking and redirect to login
+                savePendingBooking(destinationId, destinationTitle, price);
+                window.location.href = "{{ route('login') }}?message=Please login to complete your booking.";
+            }
+        });
+    });
+});
+
+function savePendingBooking(destinationId, destinationTitle, price) {
+    // Save pending booking data in session storage as fallback
+    const pendingBooking = {
+        destination_id: destinationId,
+        destination_title: destinationTitle,
+        price: price,
+        num_people: 1,
+        travel_date: '',
+        name: '',
+        email: '',
+        phone: ''
+    };
+    
+    sessionStorage.setItem('pending_booking', JSON.stringify(pendingBooking));
 }
 </script>
 @endsection
